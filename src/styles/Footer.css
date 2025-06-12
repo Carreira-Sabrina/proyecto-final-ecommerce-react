@@ -1,0 +1,17 @@
+footer{
+    background-color: var(--color-night);
+    color: var(--color-magnolia);
+    padding: 1.25rem 1.5rem;
+}
+
+
+.container-redes{
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.redes-logo{
+    font-size: 1.75rem;
+}

@@ -1,0 +1,44 @@
+/*Importar fuentes*/
+
+/*DM Sans, para casi todo*/
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+/*Special Gothic Expanded One para destaque*/
+@import url('https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap');
+
+/*Variables globales*/
+:root{
+  --color-rose: #F72585;
+  --color-magnolia: #F0EFFB;
+  --color-fandango: #B5179E;
+  --color-chrysler-blue: #560BAD;
+  --color-night: #141414;
+
+  --font-family-regular: "DM Sans", sans-serif;
+  --font-family-accent: "Special Gothic Expanded One", sans-serif;
+
+  --nav-height: 6rem;
+
+}
+
+
+#root {
+  text-align: center;
+
+  font-family: var(--font-family-regular);
+}
+
+ul{
+  list-style-type: none;
+}
+
+img{
+  display: block;
+  width: 100%;
+}
+
+
+.container{
+  max-width: 1280px;
+  margin: 0 auto;
+}

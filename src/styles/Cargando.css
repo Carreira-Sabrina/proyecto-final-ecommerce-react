@@ -1,0 +1,17 @@
+.contenedor-spinner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.spinner-cargando{
+    max-width:150px
+}
+
+.contenedor-spinner p{
+    font-size: 2.25rem;
+    color: var(--color-rose);
+    font-weight: bold;
+}

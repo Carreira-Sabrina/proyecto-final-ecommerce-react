@@ -1,0 +1,84 @@
+
+.tarjeta-producto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem;
+
+
+    /*box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;*/
+    box-shadow: 2px 6px 15px 0px rgba(86,11,173,0.7);
+    border-radius: 1.25rem;
+
+}
+
+.tarjeta-producto__img{
+    width: 120px;
+    border-radius: 50%;
+}
+
+.tarjeta-producto__datos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tarjeta-producto__datos h3{
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
+    max-width: 75%;
+}
+
+.tarjeta-producto__datos p{
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--color-rose);
+    
+}
+
+.tarjeta-producto__botones{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.btn-tarjeta-producto{
+    font-family: inherit;
+    font-size: 1.25rem;
+    padding: 8px 12px;
+    border-radius: 10px;
+    color: var(--color-magnolia);
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+.btn-agregar-carrito{
+    background-color: var(--color-chrysler-blue);
+}
+
+.btn-agregar-carrito:hover{
+    color: var(--color-chrysler-blue);
+    background-color: var(--color-magnolia);
+    border: 2px solid var(--color-chrysler-blue);
+    /*box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);*/
+}
+
+.btn-pagina-dinamica{
+    background-color: var(--color-rose);
+    text-decoration: none;
+}
+
+.btn-pagina-dinamica:hover{
+    color:var(--color-rose);
+    background-color: var(--color-magnolia);
+    border: 2px solid var(--color-rose);
+}
+
+.btn-agregar-carrito:hover,
+.btn-pagina-dinamica:hover{
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}

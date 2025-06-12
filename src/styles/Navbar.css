@@ -1,0 +1,98 @@
+/*Las variables globales están definidas en App.css*/
+
+nav{
+    background-color: var(--color-night);
+    color: var(--color-rose);
+
+    padding: 0.75rem 1.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /*Porque voy a descontar el alto del navbar al bento*/
+    height: var(--nav-height);
+
+    /*Porque de acá voy a descolgar el menu movil*/
+    position: relative;
+}
+
+.logo{
+    font-family: var(--font-family-accent);
+    font-size: 1.25rem;
+    letter-spacing: 0.12rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+nav ul{
+    display: flex;
+    align-items: center;
+    gap:1.5rem;
+}
+
+
+.nav-link{
+    text-decoration: none;
+    color: var(--color-magnolia);
+    font-size: 1.5rem;
+}
+
+.numero-carrito{
+    margin-left: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border: 2px solid var(--color-fandango);
+    border-radius: 50%;
+}
+
+
+
+/*Estilos del boton de menu movil*/
+.btn-menu-movil{
+    font-size: 2.75rem;
+    color: var(--color-fandango);
+    cursor: pointer;
+    display:none;
+}
+
+
+/*Boton login*/
+.btn-login{
+    font-size: 1.5rem;
+    text-decoration: none;
+    vertical-align: text-top;
+    display: inline-block;
+    padding: 0.5rem 0.85rem;
+    border-radius: 14px;
+    color: var(--color-magnolia);
+    background-color: var(--color-chrysler-blue);
+}
+
+
+
+@media screen and (max-width:768px){
+    .btn-menu-movil{
+        display: block;
+    }
+
+    /*No se ve a menos que tenga la clase active*/
+    nav ul{
+        display: none;
+    }
+
+    /*Cuando tiene la clase active se muestra*/
+    nav ul.active{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        
+        background-color: var(--color-chrysler-blue);
+
+        position: absolute;
+
+        top:var(--nav-height);
+        width: 100%;
+        left:50%;
+        transform: translate(-50%);
+        height: calc(100vh - var(--nav-height))
+    }
+}
