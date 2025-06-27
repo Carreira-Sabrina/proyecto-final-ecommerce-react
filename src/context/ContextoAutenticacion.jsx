@@ -34,8 +34,6 @@ export function ProveedorContextoAutenticacion({children}){
             //El cambio de estado se realiza aquí
             setUsuarioActual(user) //Será null si no hay un usuario
             if (user){
-                //Si hay un usuario podemos ver si es administrador
-                 console.log("Usuario actual (del onAuthStateChanged):", user.email); // Agrega esto para depurar
                 setUsuarioEsAdmin(usuarioEsAdministrador(user));
             }else{
                 setUsuarioEsAdmin(false) // Si no hay usuario, no puede ser administrador
@@ -131,12 +129,8 @@ export function ProveedorContextoAutenticacion({children}){
     function usuarioEsAdministrador(usuarioAComprobar){
         if(!usuarioAComprobar) return false; //Si no hay usuario, nunca puede ser admin
         //Usuario es un objeto del tipo UserCrential que tiene una propiedad user.email
-
-        console.log(`EL MAIL A COMPROBAR ES  ${usuarioAComprobar.email}`)
         
         const test = admins.some((admin) => admin.email === usuarioAComprobar.email); //usar some para booleanos
-
-        console.log(`EL RESULTADO DEL TEST DE ADMIN ES ${test}`)
         return test
     }
     

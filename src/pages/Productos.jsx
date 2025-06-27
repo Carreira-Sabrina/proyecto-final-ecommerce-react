@@ -68,9 +68,13 @@ function Productos(){
                 {/* Los productos se generan aqui */}
 
                 {
-                    productosFiltrados.map((producto)=>(
-                        <TarjetaProducto key={producto.id} producto={producto}/>
-                    ))
+                    productosFiltrados.length >0    ?   productosFiltrados.map((producto)=>(
+                                                        <TarjetaProducto key={producto.id} producto={producto}/>
+                                                        ))
+                                                    : <p>No hay productos que cumplan con el criterio</p>    
+
+
+                    
                 }
             </section>
 

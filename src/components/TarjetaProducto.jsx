@@ -5,6 +5,8 @@ import "../styles/TarjetaProducto.css"
 
 //Contexto 
 import { ContextoCarrito } from "../context/ContextoCarrito";
+import { ContextoAutenticacion } from "../context/ContextoAutenticacion";
+import { ContextoProductos } from "../context/ContextoProductos";
 
 //React icons
 import { FaCartPlus } from "react-icons/fa6"; // <FaCartPlus />
@@ -15,6 +17,7 @@ function TarjetaProducto({producto}){
 
     //Functiones que vinen del contexto
     const {agregarProductoAlCarrito} = useContext(ContextoCarrito)
+    const {eliminarProducto} = useContext(ContextoProductos)
 
     const {id, nombre, precio, descripcion, imagen} = producto;
 
@@ -39,6 +42,7 @@ function TarjetaProducto({producto}){
                     </Link>
 
                 </div>
+                
             </div>
             
 

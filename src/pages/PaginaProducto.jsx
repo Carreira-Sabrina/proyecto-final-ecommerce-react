@@ -20,10 +20,10 @@ function PaginaProducto(){
     //Detalle de un producto por id
     const {id} = useParams()
 
-    const {cargando, error, producto, obtenerProducto} = useContext(ContextoProductos);
+    const {cargando, error, producto, obtenerProducto, eliminarProducto} = useContext(ContextoProductos);
 
-    //Functiones que vinen del contexto
     const {contenidoCarrito,agregarProductoAlCarrito} = useContext(ContextoCarrito)
+
 
     function enviarProductoAlCarrito(producto){
         //Esta funcion es un auxiliar que localiza el producto a enviar en el contenidoCarrito
@@ -42,7 +42,6 @@ function PaginaProducto(){
 
     useEffect(()=>{
         obtenerProducto(id);
-        console.log(producto)
     },[])
 
     //Estado de carga
@@ -92,6 +91,10 @@ function PaginaProducto(){
                         <Link to="/productos" className="btn-navegacion">Volver al listado de productos</Link>
                         </div>
                     </div>
+
+                    {/*DEBUG */}
+                    <button onClick={()=>eliminarProducto(id)}>Eliminar</button>
+
 
                 </article>
             }

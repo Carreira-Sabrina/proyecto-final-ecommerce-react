@@ -73,6 +73,14 @@ function Navbar(){
                     </Link>
                 </li>
 
+                {
+                    usuarioEsAdmin && 
+                                        <li>
+                                            <Link to='/dashboardadmin' className="nav-link">Dashboard Admin</Link>
+                                        </li>
+                    
+                }
+
                 {/*El botón de login */}
                 <Link   to="/login"
                         onClick={cerrarMenuMovil}
@@ -89,6 +97,7 @@ function Navbar(){
                             </span>
                             
                 </Link>
+
 
             </ul>
 

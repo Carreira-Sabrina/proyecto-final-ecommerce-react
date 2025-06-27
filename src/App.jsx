@@ -4,11 +4,9 @@ import { useContext } from 'react'
 //Css
 import "./App.css"
 //Contexto
-import { ContextoCarrito } from './context/ContextoCarrito'
 import { ContextoAutenticacion } from './context/ContextoAutenticacion'
 
 //Componentes
-import Bento from './components/Bento'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 
@@ -20,6 +18,7 @@ import PaginaProducto from './pages/PaginaProducto'
 import Login from './pages/Login'
 import CrearProducto from './pages/CrearProducto'
 import RegistrarUsuario from './pages/ResgistrarUsuario'
+import AdminDashboard from './pages/AdminDashboard'
 
 
 import TestUseLocation from './pages/TestUseLocation'
@@ -40,6 +39,7 @@ function App() {
             <Route path='/crearproducto' element={usuarioEsAdmin ? <CrearProducto/> : <Navigate to="/login" replace /> } />
             <Route path='/test' element={<TestUseLocation/>}/>
             <Route path='/registrarse' element={<RegistrarUsuario/>}/>
+            <Route path='/dashboardadmin' element={usuarioEsAdmin ? <AdminDashboard/> : <Navigate to="/login" replace /> } />
 
         </Routes>
         <Footer />

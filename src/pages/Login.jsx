@@ -21,9 +21,8 @@ function Login(){
         //Si la autenticación ya cargó y si hay un usuario
         if (!cargandoAuth && usuarioActual) {
             if (usuarioEsAdmin) {
-                //TODO: REDIRIGIR A UN DASHBOARD (ADMIN) 🦜🦜🦜🦜🦜🦜
-                console.log("Redirigiendo a /crearproducto (USUARIO ES ADMIN)");
-                navigate("/crearproducto");
+                // REDIRIGIR A UN DASHBOARD (ADMIN) 
+                navigate("/dashboardadmin");
             } else {
                 //TODO: REDIRIGIR A UN DASHBOARD (NO ADMIN)🦜🦜🦜🦜🦜🦜
                 console.log("Redirigiendo a /productos (USUARIO NO ES ADMIN)");

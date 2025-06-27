@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const ContextoProductos = createContext();
 
@@ -9,6 +10,8 @@ export function ProveedorContextoProductos({children}){
     const [error, setError] = useState("");
     //Producto individual para pagina producto etc
     const [producto, setProducto] = useState({})
+
+    const navigate = useNavigate()
 
     //URL de API (base)
     const API_BASE_URL = "https://67ef9ab42a80b06b8894eeea.mockapi.io/api/Ecommerce"
@@ -38,7 +41,6 @@ export function ProveedorContextoProductos({children}){
                 setCargando(false)
             } catch (error) {
                 setCargando(false)
-                console.log("HAY UN BICHO FEO EN TU CODIGO")
                 setError(error.message)
             }
     }
@@ -109,14 +111,36 @@ export function ProveedorContextoProductos({children}){
     }
 
     //Eliminar un producto de la API
-    async function eliminarProducto(producto) {
-        
+    async function eliminarProducto(id) {
+        const API_URL = `${API_BASE_URL}/${id}`;
+        console.log(API_URL)
+
+        try {
+            const respuesta = await fetch(API_URL, {
+                method: "DELETE",
+            });
+            if(!respuesta.ok){
+                console.log(`El error ha sido ${respuesta.status}`)
+                throw new Error(`Error al eliminar el producto ${respuesta.status}`)      
+            }
+            alert('Producto eliminado correctamente');
+
+            //Actualizar la lista de productos
+            const listaActualizada = productosFiltrados.filter((item)=>item.id !== id)
+            setProductos(listaActualizada)
+
+            //redireccionar a la pagina de productos
+            navigate('/productos',{ replace: true })
+
+        } catch (error) {
+            alert('HUBO UN PROBLEMA AL ELIMINAR EL PRODUCTO');
+            }
     }
 
 
 
     const value =   {   productos, setProductos, producto, cargando, error, productosFiltrados, filtrarProductosPorNombre,
-                        obtenerProductosAPI,obtenerProducto,crearProducto}
+                        obtenerProductosAPI,obtenerProducto,crearProducto,eliminarProducto}
 
     return(
         <ContextoProductos.Provider value = {value}>
