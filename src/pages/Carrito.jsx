@@ -23,7 +23,7 @@ function Carrito(){
     //Funcion auxiliar para calcular el total del carrito
     function calcularTotalCarrito(){
         const total = contenidoCarrito.reduce((suma, item)=>{
-            return suma + (item.cantidad*item.price)
+            return suma + (item.cantidad*item.precio)
         },0)
         return total.toFixed(2)
     }

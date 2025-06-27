@@ -22,6 +22,7 @@ function ItemCarrito({producto}){
 
     const [datosProducto, setDatosProducto] = useState(producto)
 
+   
 
     //Handlers de los botones
     function aumentarCantidadProductoCarrito(){
@@ -62,12 +63,12 @@ function ItemCarrito({producto}){
     return(
         <article className="item-carrito">
             <div className="center">
-                <img src={producto.image} alt="" className="carrito__img"/>
+                <img src={producto.imagen} alt={producto.nombre} className="carrito__img"/>
             </div>
             
             <div>
-                <h4>{producto.title}</h4>
-                <p className="producto__data__precio">Precio unitario <span>${producto.price}</span></p>
+                <h4>{producto.nombre}</h4>
+                <p className="producto__data__precio">Precio unitario <span>${producto.precio}</span></p>
                 <button className="btn-producto btn-producto__eliminar" 
                                 onClick={()=>eliminarProductoDelCarrito(datosProducto)}>
                             <FaTrashCan />
@@ -88,7 +89,7 @@ function ItemCarrito({producto}){
             </div>
 
             <div className="producto__data__subtotal">
-                        <p>Subtotal <span>${producto.cantidad * producto.price}</span></p>
+                        <p>Subtotal <span>${producto.cantidad * producto.precio}</span></p>
             </div>        
                     
         </article>
