@@ -5,6 +5,7 @@ import { useContext } from 'react'
 import "./App.css"
 //Contexto
 import { ContextoCarrito } from './context/ContextoCarrito'
+import { ContextoAutenticacion } from './context/ContextoAutenticacion'
 
 //Componentes
 import Bento from './components/Bento'
@@ -23,12 +24,9 @@ import RegistrarUsuario from './pages/ResgistrarUsuario'
 
 import TestUseLocation from './pages/TestUseLocation'
 
-//Contexto
-
 
 function App() {
-
-  const {usuarioLoggeado} = useContext(ContextoCarrito)
+  const {usuarioActual,usuarioEsAdmin} = useContext(ContextoAutenticacion)
   
   return (
     <>
@@ -37,10 +35,9 @@ function App() {
             <Route path='/' element={<Inicio/>}/>
             <Route path='/productos' element={<Productos/>}/>
             <Route path='/productos/:id' element={<PaginaProducto/>}/>
-            <Route path='login' element={<Login />}/>
-            <Route path='/carrito' element={usuarioLoggeado ? <Carrito/> : <Navigate to="/login" replace /> } />
-            {/*FALTA LA LOGICA DE LOGGEADO ADMIN  */}
-            <Route path='/crearproducto' element={<CrearProducto />}/>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/carrito' element={usuarioActual ? <Carrito/> : <Navigate to="/login" replace /> } />   
+            <Route path='/crearproducto' element={usuarioEsAdmin ? <CrearProducto/> : <Navigate to="/login" replace /> } />
             <Route path='/test' element={<TestUseLocation/>}/>
             <Route path='/registrarse' element={<RegistrarUsuario/>}/>
 

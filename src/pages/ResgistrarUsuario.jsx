@@ -7,7 +7,6 @@ import { ContextoAutenticacion } from "../context/ContextoAutenticacion";
 
 
 function RegistrarUsuario(){
-
     const [credencialesUsuario, setCredencialesUsuario] = useState({email:"", password:""})
     const [errorFormulario, setErrorFormulario] = useState({})
 
@@ -24,10 +23,7 @@ function RegistrarUsuario(){
         //Funcion del contexto de autenticación
         crearUsuario(credencialesUsuario.email, credencialesUsuario.password)
 
-        //SWEET ALERT 🦜🦜🦜🦜🦜
-        alert("USUARIO CREADO CORRECTAMENTE 😊")
-
-        //Limpiar formulario 🦜🦜🦜🦜🦜
+        //Limpiar formulario
         setCredencialesUsuario({email:"", password:""})
 
         //Redirect 🦜🦜🦜❓❓❓❓❓❓❓
@@ -38,7 +34,21 @@ function RegistrarUsuario(){
     return(
         <main>
             <h1>Crea tu usuario</h1>
-            <h3>Ya estás registado? Inicia sesión</h3>
+            <h3>
+                Ya estás registado? <Link to="/login">Inicia sesión</Link> 
+            </h3>
+
+            <div>
+                <p> NOTA: a los efectos de prueba, y al no contar base de datos, se aceptarán como administradores los usuarios 
+                    creados con los siguientes emails:
+                </p>
+                <ul>
+                    <li>admin@admin.com</li>
+                    <li>optimus@admin.com</li>
+                    <li>holmes@admin.com</li>
+                    <li>ghost@admin.com</li>
+                </ul>
+            </div>
 
             <form onSubmit={onSubmitFormularioRegistro}>
                 <div className="campo-formulario">

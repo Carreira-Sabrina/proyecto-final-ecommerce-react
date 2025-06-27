@@ -11,13 +11,23 @@ import Error from "../components/Error";
 import { ContextoProductos } from "../context/ContextoProductos";
 
 function Productos(){
-    const {productos, cargando, error, obtenerProductosAPI} = useContext(ContextoProductos);
 
-    useEffect(()=>{
+    const [terminoBusqueda, setTerminoBusqueda] = useState("")
 
-        obtenerProductosAPI()
-        
-    },[])
+    const { productos, setProductos, cargando, error, obtenerProductosAPI, filtrarProductosPorNombre,productosFiltrados
+            } = useContext(ContextoProductos);
+
+
+    useEffect(() => {
+        filtrarProductosPorNombre(terminoBusqueda);
+    }, [terminoBusqueda]); // Dependencias: el término y la función de filtrado.  [terminoBusqueda,filtrarProductosPorNombre]
+
+
+    function buscarProductos(e){
+        e.preventDefault();
+        //setTerminoBusqueda(e.target.value)
+        filtrarProductosPorNombre(terminoBusqueda)
+    }
 
     //Estado de carga
     if(cargando){
@@ -39,12 +49,26 @@ function Productos(){
 
     return(
         <main>
+            <section className="seccion-busqueda">
+                <form>
+                    <input  type="text" name="buscarProductos" id="buscarProductos"
+                            placeholder="Busca un producto" 
+                            value={terminoBusqueda}
+                            onChange={(e)=>setTerminoBusqueda(e.target.value)}
+                            
+                    />
+                    <button  >
+                        Buscar
+                    </button>
+                </form>
+
+            </section>
 
             <section className="grilla-productos">
                 {/* Los productos se generan aqui */}
 
                 {
-                    productos.map((producto)=>(
+                    productosFiltrados.map((producto)=>(
                         <TarjetaProducto key={producto.id} producto={producto}/>
                     ))
                 }

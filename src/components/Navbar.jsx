@@ -6,6 +6,7 @@ import "../styles/Navbar.css"
 
 //Contexto
 import { ContextoCarrito } from "../context/ContextoCarrito";
+import { ContextoAutenticacion } from "../context/ContextoAutenticacion";
 
 //React icons
 import { GiHamburgerMenu } from "react-icons/gi"; //menu hamburguesa
@@ -20,7 +21,8 @@ function Navbar(){
 
     const [mostrarMenuMovil, setMostrarMenuMovil] = useState(false);
 
-    const {contenidoCarrito, usuarioLoggeado} = useContext(ContextoCarrito)
+    const {contenidoCarrito} = useContext(ContextoCarrito)
+    const {usuarioActual} = useContext(ContextoAutenticacion)
 
     function cambiarMenuMovil(){
         setMostrarMenuMovil(!mostrarMenuMovil);
@@ -61,7 +63,13 @@ function Navbar(){
                             onClick={cerrarMenuMovil}
                             className="nav-link">
                             Carrito <span><FaCartShopping /></span>
-                            <span className="numero-carrito">{contenidoCarrito.length}</span>
+                            {
+                                contenidoCarrito.length > 0 && 
+                                    <span className="numero-carrito">{contenidoCarrito.length}</span>
+                                
+
+                            }
+                            
                     </Link>
                 </li>
 
@@ -73,7 +81,7 @@ function Navbar(){
 
                             <span>
                                 {
-                                    usuarioLoggeado ?  <span> Usuario loggeado <FaUserCheck/></span>
+                                    usuarioActual   ?  <span> Usuario loggeado <FaUserCheck/></span>
                                                     :  <span> Login <FaUserXmark /></span>
                                 }
                             </span>

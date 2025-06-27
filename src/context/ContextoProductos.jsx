@@ -3,16 +3,26 @@ import { createContext, useState, useEffect } from "react";
 export const ContextoProductos = createContext();
 
 export function ProveedorContextoProductos({children}){
-
     const [productos, setProductos] = useState([]);
+    const [productosFiltrados, setProductosFiltrados] = useState([]);
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState("");
     //Producto individual para pagina producto etc
     const [producto, setProducto] = useState({})
 
+    //URL de API (base)
+    const API_BASE_URL = "https://67ef9ab42a80b06b8894eeea.mockapi.io/api/Ecommerce"
+
+    //Los productos de la api ahora se obtienen en el contexto
+    useEffect(()=>{
+
+        obtenerProductosAPI()
+        
+    },[])
+
     //Obtener Productos API
     async function obtenerProductosAPI(){
-        const API_URL = "https://67ef9ab42a80b06b8894eeea.mockapi.io/api/Ecommerce"
+        const API_URL = API_BASE_URL;
 
         try {
                 const respuesta = await fetch(API_URL);
@@ -23,12 +33,25 @@ export function ProveedorContextoProductos({children}){
                 }
                 const productosApi = await respuesta.json()
                 setProductos(productosApi);
+                //Lo que se renderiza en el filtro es el resultado del filtro
+                setProductosFiltrados(productosApi);
                 setCargando(false)
             } catch (error) {
                 setCargando(false)
                 console.log("HAY UN BICHO FEO EN TU CODIGO")
                 setError(error.message)
             }
+    }
+
+    //filtrar productos por nombre con lo que viene de barra de busqueda
+    function filtrarProductosPorNombre(terminoBusqueda){
+        if(!terminoBusqueda){
+            setProductosFiltrados(productos)
+            return;
+        }
+        const terminoBusquedaMinusculas = terminoBusqueda.toLowerCase();
+        const resultadoFiltro = productos.filter((producto)=> producto.nombre.toLowerCase().includes(terminoBusquedaMinusculas))
+        setProductosFiltrados(resultadoFiltro);
     }
 
     //Encontrar producto por ID
@@ -55,7 +78,7 @@ export function ProveedorContextoProductos({children}){
 
     //Agregar un producto a la API
     async function crearProducto(producto){
-        const API_URL = "https://67ef9ab42a80b06b8894eeea.mockapi.io/api/Ecommerce";
+        const API_URL = API_BASE_URL;
 
         try {
             const respuesta = await fetch(API_URL, {
@@ -81,12 +104,19 @@ export function ProveedorContextoProductos({children}){
     }
 
     //Modificar un producto de la API
+    async function modificarProducto(producto){
+
+    }
 
     //Eliminar un producto de la API
+    async function eliminarProducto(producto) {
+        
+    }
 
-    
 
-    const value ={productos,producto, cargando, error, obtenerProductosAPI,obtenerProducto,crearProducto}
+
+    const value =   {   productos, setProductos, producto, cargando, error, productosFiltrados, filtrarProductosPorNombre,
+                        obtenerProductosAPI,obtenerProducto,crearProducto}
 
     return(
         <ContextoProductos.Provider value = {value}>

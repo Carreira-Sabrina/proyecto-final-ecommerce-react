@@ -18,12 +18,6 @@ function guardarCarritoLocalStorage(carrito){
 export const ContextoCarrito = createContext();
 
 export function ProveedorContextoCarrito({children}){
-
-    //Simulacion login de muy bajo presupuesto, se pone acá porque el carrito es la
-    //unica ruta protegida por el momento
-    const [usuarioLoggeado,setUsuarioLoggeado] = useState(false);
-
-
     //Contenido del carrito
     const [contenidoCarrito, setContenidoCarrito] = useState(cargarCarritoLocalStorage);
 
@@ -74,8 +68,6 @@ export function ProveedorContextoCarrito({children}){
 
     return(
         <ContextoCarrito.Provider   value={{contenidoCarrito,
-                                            usuarioLoggeado,
-                                            setUsuarioLoggeado,
                                             setContenidoCarrito, 
                                             agregarProductoAlCarrito,
                                             eliminarProductoDelCarrito,

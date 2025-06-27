@@ -22,6 +22,5 @@ createRoot(document.getElementById('root')).render(
           </ProveedorContextoProductos>
         </ProveedorContextoAutenticacion>
     </BrowserRouter>
-    
-  </StrictMode>,
+  </StrictMode>
 )
