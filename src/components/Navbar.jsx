@@ -22,7 +22,7 @@ function Navbar(){
     const [mostrarMenuMovil, setMostrarMenuMovil] = useState(false);
 
     const {contenidoCarrito} = useContext(ContextoCarrito)
-    const {usuarioActual} = useContext(ContextoAutenticacion)
+    const {usuarioActual,usuarioEsAdmin} = useContext(ContextoAutenticacion)
 
     function cambiarMenuMovil(){
         setMostrarMenuMovil(!mostrarMenuMovil);
@@ -78,10 +78,12 @@ function Navbar(){
                         onClick={cerrarMenuMovil}
                         className = "btn-login"
                         >
-
+                
                             <span>
                                 {
-                                    usuarioActual   ?  <span> Usuario loggeado <FaUserCheck/></span>
+                                    usuarioActual   ?  
+                                                        (usuarioEsAdmin ?  <span> Admin loggeado <FaUserCheck/></span> 
+                                                                        : <span> Usuario loggeado <FaUserCheck/></span> )    
                                                     :  <span> Login <FaUserXmark /></span>
                                 }
                             </span>
