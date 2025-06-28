@@ -98,7 +98,13 @@ export function ProveedorContextoProductos({children}){
             console.log('Producto agregado:', data);
             alert('Producto agregado correctamente');
 
+            //Actualizar la lista de productos
+            const listaActualizada = [...productos, data]
+            setProductos(listaActualizada)
+
+
             //NO HAY QUE HACER UN REDIRECT? 🦜🦜🦜🦜🦜🦜🦜
+            navigate('/productos',{ replace: true })
 
         } catch (error) {
             alert('HUBO UN PROBLEMA AL AGREGAR EL PRODUCTO');
@@ -107,7 +113,36 @@ export function ProveedorContextoProductos({children}){
 
     //Modificar un producto de la API
     async function modificarProducto(producto){
+        const API_URL = `${API_BASE_URL}/${producto.id}`;
+        console.log(`La url del producto a modificar es ${API_URL}`)
 
+        try {
+            const respuesta = await fetch(API_URL, {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json',
+                    },
+                body: JSON.stringify(producto)
+            });
+            if(!respuesta.ok){
+                console.log(`El error ha sido ${respuesta.status}`)
+                throw new Error(`Error al crear el producto ${respuesta.status}`)      
+            }
+            const data = await respuesta.json();
+            console.log('Producto MODIFICADO:', data);
+            alert('Producto MODIFICADO correctamente');
+
+            //Actualizar la lista de productos
+            const listaActualizada = productos.map((item)=> item.id === producto.id ? producto : item)
+            setProductos(listaActualizada)
+
+
+            //NO HAY QUE HACER UN REDIRECT? 🦜🦜🦜🦜🦜🦜🦜
+            navigate('/productos',{ replace: true })
+
+        } catch (error) {
+            alert('HUBO UN PROBLEMA AL MODIFICAR EL PRODUCTO');
+        }
     }
 
     //Eliminar un producto de la API
@@ -140,7 +175,7 @@ export function ProveedorContextoProductos({children}){
 
 
     const value =   {   productos, setProductos, producto, cargando, error, productosFiltrados, filtrarProductosPorNombre,
-                        obtenerProductosAPI,obtenerProducto,crearProducto,eliminarProducto}
+                        obtenerProductosAPI,obtenerProducto,crearProducto,eliminarProducto,modificarProducto}
 
     return(
         <ContextoProductos.Provider value = {value}>

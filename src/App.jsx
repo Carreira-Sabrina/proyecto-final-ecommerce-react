@@ -17,6 +17,7 @@ import Carrito from './pages/Carrito'
 import PaginaProducto from './pages/PaginaProducto'
 import Login from './pages/Login'
 import CrearProducto from './pages/CrearProducto'
+import EditarProducto from './pages/EditarProducto'
 import RegistrarUsuario from './pages/ResgistrarUsuario'
 import AdminDashboard from './pages/AdminDashboard'
 
@@ -37,6 +38,7 @@ function App() {
             <Route path='/login' element={<Login/>}/>
             <Route path='/carrito' element={usuarioActual ? <Carrito/> : <Navigate to="/login" replace /> } />   
             <Route path='/crearproducto' element={usuarioEsAdmin ? <CrearProducto/> : <Navigate to="/login" replace /> } />
+            <Route path='/editarproducto/:id' element={usuarioEsAdmin ? <EditarProducto/> : <Navigate to="/login" replace /> } />
             <Route path='/test' element={<TestUseLocation/>}/>
             <Route path='/registrarse' element={<RegistrarUsuario/>}/>
             <Route path='/dashboardadmin' element={usuarioEsAdmin ? <AdminDashboard/> : <Navigate to="/login" replace /> } />

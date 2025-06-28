@@ -20,7 +20,7 @@ function PaginaProducto(){
     //Detalle de un producto por id
     const {id} = useParams()
 
-    const {cargando, error, producto, obtenerProducto, eliminarProducto} = useContext(ContextoProductos);
+    const {cargando, error, producto, obtenerProducto, eliminarProducto, modificarProducto} = useContext(ContextoProductos);
 
     const {contenidoCarrito,agregarProductoAlCarrito} = useContext(ContextoCarrito)
 
@@ -94,6 +94,7 @@ function PaginaProducto(){
 
                     {/*DEBUG */}
                     <button onClick={()=>eliminarProducto(id)}>Eliminar</button>
+                    <Link to={`/editarproducto/${id}`}>Editar</Link>
 
 
                 </article>
