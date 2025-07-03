@@ -22,8 +22,6 @@ function ItemCarrito({producto}){
 
     const [datosProducto, setDatosProducto] = useState(producto)
 
-   
-
     //Handlers de los botones
     function aumentarCantidadProductoCarrito(){
         const nuevoContenidoCarrito = contenidoCarrito.map((item)=>{
@@ -69,22 +67,26 @@ function ItemCarrito({producto}){
             <div>
                 <h4>{producto.nombre}</h4>
                 <p className="producto__data__precio">Precio unitario <span>${producto.precio}</span></p>
-                <button className="btn-producto btn-producto__eliminar" 
-                                onClick={()=>eliminarProductoDelCarrito(datosProducto)}>
-                            <FaTrashCan />
+                <button aria-label="Eliminar producto del carrito"
+                        className="btn-producto btn-producto__eliminar" 
+                        onClick={()=>eliminarProductoDelCarrito(datosProducto)}>
+                            <FaTrashCan aria-hidden="true" />
                 </button>
             </div>
             
             <div className="producto__data__cantidad">
-                <button className="btn-producto btn_producto_menos" 
+                <button aria-label="Quitar una unidad del producto"
+                        className="btn-producto btn_producto_menos" 
                         onClick={disminuirCantidadProductoCarrito}>
-                        <FaRegSquareMinus /> 
+                        <FaRegSquareMinus aria-hidden="true" /> 
                 </button>
 
                 <span className="span-cantidad">{producto.cantidad}</span>
                         
-                <button className="btn-producto btn_producto_mas" onClick={aumentarCantidadProductoCarrito}>
-                    <FaRegSquarePlus />
+                <button aria-label="Aumentar una unidad del producto"
+                        className="btn-producto btn_producto_mas" 
+                        onClick={aumentarCantidadProductoCarrito}>
+                    <FaRegSquarePlus aria-hidden="true" />
                 </button>
             </div>
 

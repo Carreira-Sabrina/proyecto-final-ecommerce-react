@@ -98,9 +98,9 @@ function Navbar(){
                             <span>
                                 {
                                     usuarioActual   ?  
-                                                        (usuarioEsAdmin ?  <span> Admin loggeado <FaUserCheck/></span> 
+                                                        (usuarioEsAdmin ? <span> Admin loggeado <FaUserCheck/></span> 
                                                                         : <span> Usuario loggeado <FaUserCheck/></span> )    
-                                                    :  <span> Login <FaUserXmark /></span>
+                                                    :  <span aria-label="Inicia sesion aqui"> Login <FaUserXmark /></span>
                                 }
                             </span>
                             
@@ -110,7 +110,12 @@ function Navbar(){
                 <li>
                     {/* El boton de logout */}
                     {
-                        usuarioActual&& <button className="btn-logout" onClick={manejardorCerrarSesion}>Cerrar sesión</button>
+                        usuarioActual&& 
+                                        <button aria-label="Cerrar sesión" 
+                                                className="btn-logout" 
+                                                onClick={manejardorCerrarSesion}>
+                                                    Cerrar sesión
+                                        </button>
                     }
 
                 </li>
