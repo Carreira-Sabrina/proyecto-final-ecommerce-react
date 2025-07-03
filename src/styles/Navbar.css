@@ -57,7 +57,7 @@ nav ul{
 
 /*Boton login*/
 .btn-login{
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     text-decoration: none;
     vertical-align: text-top;
     display: inline-block;
@@ -67,9 +67,18 @@ nav ul{
     background-color: var(--color-chrysler-blue);
 }
 
+.btn-logout{
+    background-color: var(--color-fandango);
+    padding: 0.5rem 0.75rem;
+    color: var(--color-magnolia);
+    font-size: 1.25rem;
+    border-radius: 0.75rem;
+    border: none;
+}
 
 
-@media screen and (max-width:768px){
+
+@media screen and (max-width:992px){
     .btn-menu-movil{
         display: block;
     }

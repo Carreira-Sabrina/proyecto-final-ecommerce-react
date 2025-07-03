@@ -1,4 +1,5 @@
 import { useContext,useState,useEffect } from "react";
+import { Helmet } from "react-helmet";
 //Css
 import "../styles/Carrito.css"
 
@@ -97,44 +98,54 @@ function Carrito(){
     },[contenidoCarrito])
 
     return(
-        <main>
-            <h1>Tu carrito</h1>
+        <>
+            <Helmet>
+                <title>Carrito de compras | TalentoTesch Store</title>
+                <meta   name="description"
+                        content="Estás a un paso de realizar tu compra"
+                />
+            </Helmet>
 
-            <div className="contenedor_carrito">
+            <main>
+                <h1>Tu carrito</h1>
 
-                <section className="display-productos-carrito">
-                
+                <div className="contenedor_carrito">
+
+                    <section className="display-productos-carrito">
+                    
+                        {
+                            contenidoCarrito.length > 0 ?
+                                contenidoCarrito.map((item)=>(
+                                <ItemCarrito key={item.id} producto={item} />
+                                )   )
+                        : <p className="contenedor_carrito_vacio">Tu carrito está vacio</p>
+                        }
+                    </section>
+                    
+                    {/*Sólo muestro el checkout si hay algo en el carrito */}
                     {
-                        contenidoCarrito.length > 0 ?
-                            contenidoCarrito.map((item)=>(
-                            <ItemCarrito key={item.id} producto={item} />
-                            )   )
-                    : <p className="contenedor_carrito_vacio">Tu carrito está vacio</p>
+                        contenidoCarrito.length > 0 &&
+
+                        <section className="display-checkout-carrito">
+                            <h3>Resumen de tu compra</h3>
+                            <p>Total $ <span>{totalCarrito}</span></p>
+                            <button 
+                                onClick={handleFinalizarCompra}>
+                                    Finalizar compra <span className="icono-btn-carrito icono-btn__comprar"><FaCircleCheck /></span>
+                            </button>
+                            <button 
+                                onClick={handleVaciarCarrito}>Vaciar carrito <span className="icono-btn-carrito icono-btn__cancelar"><FaCircleXmark/></span>
+                            </button>
+                    </section>
+
                     }
-                </section>
-                
-                {/*Sólo muestro el checkout si hay algo en el carrito */}
-                {
-                    contenidoCarrito.length > 0 &&
-
-                    <section className="display-checkout-carrito">
-                        <h3>Resumen de tu compra</h3>
-                        <p>Total $ <span>{totalCarrito}</span></p>
-                        <button 
-                            onClick={handleFinalizarCompra}>
-                                Finalizar compra <span className="icono-btn-carrito icono-btn__comprar"><FaCircleCheck /></span>
-                        </button>
-                        <button 
-                            onClick={handleVaciarCarrito}>Vaciar carrito <span className="icono-btn-carrito icono-btn__cancelar"><FaCircleXmark/></span>
-                        </button>
-                </section>
-
-                }
-                
-                
-            </div>
+                    
+                    
+                </div>
             
-        </main>
+            </main>
+        </>
+        
     )
 }
 

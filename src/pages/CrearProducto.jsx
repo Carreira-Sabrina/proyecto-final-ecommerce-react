@@ -1,4 +1,5 @@
 import { useState,useContext } from "react";
+import { Helmet } from "react-helmet";
 
 //Css
 import "../styles/CrearProducto.css"
@@ -70,60 +71,70 @@ function CrearProducto(){
     }
 
     return(
-        <main>
-            <h1>Completa los datos para crear un nuevo producto</h1>
-            <form onSubmit={onSubmitFormulario} className="formulario-productos">
+        <>
+            <Helmet>
+                <title>Sección sólo para administradores | TalentoTesch Store</title>
+                <meta   name="description"
+                        content="Aquí puedes agregar productos a la tienda"
+                />
+            </Helmet>
+            <main>
+                <h1>Completa los datos para crear un nuevo producto</h1>
+                <form onSubmit={onSubmitFormulario} className="formulario-productos">
 
-                <div className="campo-formulario">
-                    <label htmlFor="nombre">Nombre del producto:</label>
-                    <input  type="text" name="nombre" id="nombre" 
-                            value={nuevoProducto.nombre} onChange={onChangeCampoFormulario}
-                    />
-                </div>
+                    <div className="campo-formulario">
+                        <label htmlFor="nombre">Nombre del producto:</label>
+                        <input  type="text" name="nombre" id="nombre" 
+                                value={nuevoProducto.nombre} onChange={onChangeCampoFormulario}
+                        />
+                    </div>
 
-                <div className="campo-formulario">
-                    <label htmlFor="precio">Precio del producto: $</label>
-                    <input  type="text" name="precio" id="precio" 
-                            value={nuevoProducto.precio} onChange={onChangeCampoFormulario} 
-                    />
-                </div>
+                    <div className="campo-formulario">
+                        <label htmlFor="precio">Precio del producto: $</label>
+                        <input  type="text" name="precio" id="precio" 
+                                value={nuevoProducto.precio} onChange={onChangeCampoFormulario} 
+                        />
+                    </div>
 
-                <div className="campo-formulario">
-                    <label htmlFor="imagen">URL de la imagen:</label>
-                    <input  type="text" name="imagen" id="imagen" 
-                            value={nuevoProducto.imagen} onChange={onChangeCampoFormulario}
-                    />
-                </div>
+                    <div className="campo-formulario">
+                        <label htmlFor="imagen">URL de la imagen:</label>
+                        <input  type="text" name="imagen" id="imagen" 
+                                value={nuevoProducto.imagen} onChange={onChangeCampoFormulario}
+                        />
+                    </div>
 
-                <div className="campo-formulario">
-                    <label htmlFor="descripcion">Descripción del producto:</label>
-                    <textarea   name="descripcion" id="descripcion" 
-                                value={nuevoProducto.descripcion} onChange={onChangeCampoFormulario} 
-                    />
-                </div>
-                <div className="botones-formulario">
-                    <button className="btn-crear-producto">Cancelar</button>
-                    <button className="btn-cancelar-creacion" type="submit">Crear nuevo producto</button>
-                </div>
+                    <div className="campo-formulario">
+                        <label htmlFor="descripcion">Descripción del producto:</label>
+                        <textarea   name="descripcion" id="descripcion" 
+                                    value={nuevoProducto.descripcion} onChange={onChangeCampoFormulario} 
+                        />
+                    </div>
+                    <div className="botones-formulario">
+                        <button className="btn-crear-producto">Cancelar</button>
+                        <button className="btn-cancelar-creacion" type="submit">Crear nuevo producto</button>
+                    </div>
 
-                {/* Render condicional de los errores del formulario */}
-                
-                <div className="contenedor-errores-formulario">
-                    {
-                        Object.keys(erroresCampoFormulario).length > 0 &&
-                        
-                        Object.values(erroresCampoFormulario).map((value,index)=>(
-                            <p className="errores-formulario" key={index}>{value}</p>
-                        ))
-                        
-
+                    {/* Render condicional de los errores del formulario */}
                     
-                    }
-                </div>
-                
-            </form>
+                    <div className="contenedor-errores-formulario">
+                        {
+                            Object.keys(erroresCampoFormulario).length > 0 &&
+                            
+                            Object.values(erroresCampoFormulario).map((value,index)=>(
+                                <p className="errores-formulario" key={index}>{value}</p>
+                            ))
+                            
 
-        </main>
+                        
+                        }
+                    </div>
+                    
+                </form>
+
+            </main>
+        </>
+
+            
     )
 
 }

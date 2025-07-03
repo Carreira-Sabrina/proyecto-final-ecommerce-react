@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 export const ContextoProductos = createContext();
 
 export function ProveedorContextoProductos({children}){
+    const [productosApi, setProductosApi] = useState([]); // Para llamar a la API una sola vez
     const [productos, setProductos] = useState([]);
-    const [productosFiltrados, setProductosFiltrados] = useState([]);
+    const [terminoBusqueda, setTerminoBusqueda] = useState(""); //Para controlar el input de filtrado
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState("");
     //Producto individual para pagina producto etc
@@ -16,12 +17,16 @@ export function ProveedorContextoProductos({children}){
     //URL de API (base)
     const API_BASE_URL = "https://67ef9ab42a80b06b8894eeea.mockapi.io/api/Ecommerce"
 
-    //Los productos de la api ahora se obtienen en el contexto
     useEffect(()=>{
 
         obtenerProductosAPI()
         
     },[])
+
+    //Para filtrar productos con un imput (productosApi no deberia estar en la array de dependencias?)🦜🦜🦜
+    useEffect(()=>{
+        filtrarProductosPorNombre(terminoBusqueda)
+    },[terminoBusqueda])
 
     //Obtener Productos API
     async function obtenerProductosAPI(){
@@ -35,9 +40,8 @@ export function ProveedorContextoProductos({children}){
                     
                 }
                 const productosApi = await respuesta.json()
+                setProductosApi(productosApi); //Esto no se toca hasta que algo cambie en la API
                 setProductos(productosApi);
-                //Lo que se renderiza en el filtro es el resultado del filtro
-                setProductosFiltrados(productosApi);
                 setCargando(false)
             } catch (error) {
                 setCargando(false)
@@ -45,15 +49,15 @@ export function ProveedorContextoProductos({children}){
             }
     }
 
-    //filtrar productos por nombre con lo que viene de barra de busqueda
-    function filtrarProductosPorNombre(terminoBusqueda){
-        if(!terminoBusqueda){
-            setProductosFiltrados(productos)
+    //filtrar productos por nombre con lo que viene de barra de busqueda 🦜🦜🦜🦜 HARÁ FALTA PASAR UN PARAMETRO?
+    function filtrarProductosPorNombre(termino){
+        if(termino.trim()===""){
+            setProductos(productosApi)
             return;
         }
-        const terminoBusquedaMinusculas = terminoBusqueda.toLowerCase();
-        const resultadoFiltro = productos.filter((producto)=> producto.nombre.toLowerCase().includes(terminoBusquedaMinusculas))
-        setProductosFiltrados(resultadoFiltro);
+        const terminoBusquedaMinusculas = termino.toLowerCase();
+        const resultadoFiltro = productosApi.filter((producto)=> producto.nombre.toLowerCase().includes(terminoBusquedaMinusculas))
+        setProductos(resultadoFiltro);
     }
 
     //Encontrar producto por ID
@@ -70,9 +74,9 @@ export function ProveedorContextoProductos({children}){
                 const productoApi = await respuesta.json()
                 setProducto(productoApi);
                 setCargando(false)
-            } catch (error) {
+            } catch (err) {
                 setCargando(false)
-                console.log("HAY UN BICHO FEO EN TU CODIGO")
+                console.log(err.message)
                 setError(error.message)
             }
 
@@ -174,7 +178,7 @@ export function ProveedorContextoProductos({children}){
 
 
 
-    const value =   {   productos, setProductos, producto, cargando, error, productosFiltrados, filtrarProductosPorNombre,
+    const value =   {   productos, setProductos, producto, cargando, error, terminoBusqueda,setTerminoBusqueda, filtrarProductosPorNombre,
                         obtenerProductosAPI,obtenerProducto,crearProducto,eliminarProducto,modificarProducto}
 
     return(

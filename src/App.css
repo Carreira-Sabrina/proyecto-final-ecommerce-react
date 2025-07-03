@@ -1,5 +1,4 @@
-/*Importar fuentes*/
-
+/*Fuentes*/
 /*DM Sans, para casi todo*/
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
@@ -17,7 +16,7 @@
   --font-family-regular: "DM Sans", sans-serif;
   --font-family-accent: "Special Gothic Expanded One", sans-serif;
 
-  --nav-height: 6rem;
+  --nav-height: 7rem;
 
 }
 

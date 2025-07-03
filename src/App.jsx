@@ -22,9 +22,6 @@ import RegistrarUsuario from './pages/ResgistrarUsuario'
 import AdminDashboard from './pages/AdminDashboard'
 
 
-import TestUseLocation from './pages/TestUseLocation'
-
-
 function App() {
   const {usuarioActual,usuarioEsAdmin} = useContext(ContextoAutenticacion)
   
@@ -39,7 +36,6 @@ function App() {
             <Route path='/carrito' element={usuarioActual ? <Carrito/> : <Navigate to="/login" replace /> } />   
             <Route path='/crearproducto' element={usuarioEsAdmin ? <CrearProducto/> : <Navigate to="/login" replace /> } />
             <Route path='/editarproducto/:id' element={usuarioEsAdmin ? <EditarProducto/> : <Navigate to="/login" replace /> } />
-            <Route path='/test' element={<TestUseLocation/>}/>
             <Route path='/registrarse' element={<RegistrarUsuario/>}/>
             <Route path='/dashboardadmin' element={usuarioEsAdmin ? <AdminDashboard/> : <Navigate to="/login" replace /> } />
 

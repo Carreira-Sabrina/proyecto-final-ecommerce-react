@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
+import { Helmet } from "react-helmet";
 
 //Css
 import "../styles/PaginaProducto.css"
@@ -64,43 +65,52 @@ function PaginaProducto(){
 
 
     return(
-        <main className="main">
-            {
-                producto && 
-                <article className="contenedor-producto">
+            <>
+                <Helmet>
+                        <title>TalentoTesch Store | Detalle de producto</title>
+                        <meta   name="description"
+                                content="Aquí puedes ver un producto en detalle"
+                        />
+                </Helmet>
+                <main className="main">
+                    {
+                        producto && 
+                        <article className="contenedor-producto">
 
-                    <div className="contenedor-producto__imagen">
-                        <img src={producto.imagen} alt="" />
-                    </div>
+                            <div className="contenedor-producto__imagen">
+                                <img src={producto.imagen} alt="" />
+                            </div>
 
-                    <div className="contenedor-producto__info">
-                        <h2>{producto.nombre}</h2>
+                            <div className="contenedor-producto__info">
+                                <h2>{producto.nombre}</h2>
 
-                        <p className="contenedor-producto__info-descripcion">{producto.descripcion}</p>
+                                <p className="contenedor-producto__info-descripcion">{producto.descripcion}</p>
 
-                        <p>Precio: <span>${producto.precio}</span></p>
+                                <p>Precio: <span>${producto.precio}</span></p>
 
-                        {/*OJO ! SI AGREGO DESDE ACA NO TIENE LA CANTIDAD !  */}
-                        {/*hay que llamar a una funcion que ubique al item en el carrito y si existe,*/}
-                        {/*mandarlo con la cantidad*/}
-                        <button className="btn-tarjeta-producto btn-agregar-carrito" 
-                                onClick={()=>enviarProductoAlCarrito(producto)}>
-                                Agregar al carrito <span><FaCartPlus /></span>
-                        </button>
-                        <div className="contenerdor-navegacion">
-                        <Link to="/productos" className="btn-navegacion">Volver al listado de productos</Link>
-                        </div>
-                    </div>
+                                {/*OJO ! SI AGREGO DESDE ACA NO TIENE LA CANTIDAD !  */}
+                                {/*hay que llamar a una funcion que ubique al item en el carrito y si existe,*/}
+                                {/*mandarlo con la cantidad*/}
+                                <button className="btn-tarjeta-producto btn-agregar-carrito" 
+                                        onClick={()=>enviarProductoAlCarrito(producto)}>
+                                        Agregar al carrito <span><FaCartPlus /></span>
+                                </button>
+                                <div className="contenerdor-navegacion">
+                                <Link to="/productos" className="btn-navegacion">Volver al listado de productos</Link>
+                                </div>
+                            </div>
 
-                    {/*DEBUG */}
-                    <button onClick={()=>eliminarProducto(id)}>Eliminar</button>
-                    <Link to={`/editarproducto/${id}`}>Editar</Link>
+                            {/*DEBUG */}
+                            <button onClick={()=>eliminarProducto(id)}>Eliminar</button>
+                            <Link to={`/editarproducto/${id}`}>Editar</Link>
 
 
-                </article>
-            }
-            
-        </main>
+                        </article>
+                    }
+                    
+                </main>
+            </>
+                
     )
 
 }

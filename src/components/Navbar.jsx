@@ -22,7 +22,7 @@ function Navbar(){
     const [mostrarMenuMovil, setMostrarMenuMovil] = useState(false);
 
     const {contenidoCarrito} = useContext(ContextoCarrito)
-    const {usuarioActual,usuarioEsAdmin} = useContext(ContextoAutenticacion)
+    const {auth,usuarioActual,usuarioEsAdmin,cerrarSesion} = useContext(ContextoAutenticacion)
 
     function cambiarMenuMovil(){
         setMostrarMenuMovil(!mostrarMenuMovil);
@@ -33,6 +33,13 @@ function Navbar(){
         if(mostrarMenuMovil){
             setMostrarMenuMovil(false);
         }
+    }
+
+    //Manejador del botón de cierre de sesion
+    function manejardorCerrarSesion(){
+        //DEBUG 🦜🦜🦜🦜
+        alert("SE VA A CERRAR LA SESION")
+        cerrarSesion(auth);
     }
 
     return(
@@ -82,7 +89,8 @@ function Navbar(){
                 }
 
                 {/*El botón de login */}
-                <Link   to="/login"
+                <li>
+                    <Link   to="/login"
                         onClick={cerrarMenuMovil}
                         className = "btn-login"
                         >
@@ -96,7 +104,17 @@ function Navbar(){
                                 }
                             </span>
                             
-                </Link>
+                    </Link> 
+                </li>
+
+                <li>
+                    {/* El boton de logout */}
+                    {
+                        usuarioActual&& <button className="btn-logout" onClick={manejardorCerrarSesion}>Cerrar sesión</button>
+                    }
+
+                </li>
+                
 
 
             </ul>

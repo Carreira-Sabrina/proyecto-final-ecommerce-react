@@ -12,22 +12,7 @@ import { ContextoProductos } from "../context/ContextoProductos";
 
 function Productos(){
 
-    const [terminoBusqueda, setTerminoBusqueda] = useState("")
-
-    const { productos, setProductos, cargando, error, obtenerProductosAPI, filtrarProductosPorNombre,productosFiltrados
-            } = useContext(ContextoProductos);
-
-
-    useEffect(() => {
-        filtrarProductosPorNombre(terminoBusqueda);
-    }, [terminoBusqueda]); // Dependencias: el término y la función de filtrado.  [terminoBusqueda,filtrarProductosPorNombre]
-
-
-    function buscarProductos(e){
-        e.preventDefault();
-        //setTerminoBusqueda(e.target.value)
-        filtrarProductosPorNombre(terminoBusqueda)
-    }
+    const { productos, cargando, error,terminoBusqueda,setTerminoBusqueda } = useContext(ContextoProductos);
 
     //Estado de carga
     if(cargando){
@@ -54,12 +39,9 @@ function Productos(){
                     <input  type="text" name="buscarProductos" id="buscarProductos"
                             placeholder="Busca un producto" 
                             value={terminoBusqueda}
-                            onChange={(e)=>setTerminoBusqueda(e.target.value)}
+                            onChange={(e)=> {console.log(e.target.value) ;setTerminoBusqueda(e.target.value)}}
                             
                     />
-                    <button  >
-                        Buscar
-                    </button>
                 </form>
 
             </section>
@@ -68,7 +50,7 @@ function Productos(){
                 {/* Los productos se generan aqui */}
 
                 {
-                    productosFiltrados.length >0    ?   productosFiltrados.map((producto)=>(
+                    productos.length >0    ?   productos.map((producto)=>(
                                                         <TarjetaProducto key={producto.id} producto={producto}/>
                                                         ))
                                                     : <p>No hay productos que cumplan con el criterio</p>    

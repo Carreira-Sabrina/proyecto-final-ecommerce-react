@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 
 //Contexto Autenticación
@@ -32,53 +33,62 @@ function RegistrarUsuario(){
     }
 
     return(
-        <main>
-            <h1>Crea tu usuario</h1>
-            <h3>
-                Ya estás registado? <Link to="/login">Inicia sesión</Link> 
-            </h3>
+            <>
+                <Helmet>
+                        <title>TalentoTesch Store | Registro de usuarios</title>
+                        <meta   name="description"
+                                content="Crea tu cuenta para disfrutar más funciones en nuestra tienda online"
+                        />
+                </Helmet>
 
-            <div>
-                <p> NOTA: a los efectos de prueba, y al no contar base de datos, se aceptarán como administradores los usuarios 
-                    creados con los siguientes emails:
-                </p>
-                <ul>
-                    <li>admin@admin.com</li>
-                    <li>optimus@admin.com</li>
-                    <li>holmes@admin.com</li>
-                    <li>ghost@admin.com</li>
-                </ul>
-            </div>
+                <main>
+                    <h1>Crea tu usuario</h1>
+                    <h3>
+                        Ya estás registado? <Link to="/login">Inicia sesión</Link> 
+                    </h3>
 
-            <form onSubmit={onSubmitFormularioRegistro}>
-                <div className="campo-formulario">
-                    <label htmlFor="email">Ingresa tu email</label>
-                    <input  type="email" name="email" id="email" required 
-                            placeholder="email@host.com"
-                            value={credencialesUsuario.email}
-                            onChange={onChangeCamposFormulario} 
-                    />
-                </div>
+                    <div>
+                        <p> NOTA: a los efectos de prueba, y al no contar base de datos, se aceptarán como administradores los usuarios 
+                            creados con los siguientes emails:
+                        </p>
+                        <ul>
+                            <li>admin@admin.com</li>
+                            <li>optimus@admin.com</li>
+                            <li>holmes@admin.com</li>
+                            <li>ghost@admin.com</li>
+                        </ul>
+                    </div>
 
-                <div className="campo-formulario">
-                    <label htmlFor="password">Ingresa tu password</label>
-                    <input  type="password" name="password" id="password" required 
-                            value={credencialesUsuario.password}
-                            onChange={onChangeCamposFormulario} 
-                    />
-                </div>
+                    <form onSubmit={onSubmitFormularioRegistro}>
+                        <div className="campo-formulario">
+                            <label htmlFor="email">Ingresa tu email</label>
+                            <input  type="email" name="email" id="email" required 
+                                    placeholder="email@host.com"
+                                    value={credencialesUsuario.email}
+                                    onChange={onChangeCamposFormulario} 
+                            />
+                        </div>
 
-                <button type="submit">Crear usuario</button>
+                        <div className="campo-formulario">
+                            <label htmlFor="password">Ingresa tu password</label>
+                            <input  type="password" name="password" id="password" required 
+                                    value={credencialesUsuario.password}
+                                    onChange={onChangeCamposFormulario} 
+                            />
+                        </div>
 
-                <div>
-                    <p>Debug</p>
-                    {
-                        usuario && <p>{usuario.email}</p>
-                    }
-                </div>
+                        <button type="submit">Crear usuario</button>
 
-            </form>
-        </main>
+                        <div>
+                            <p>Debug</p>
+                            {
+                                usuario && <p>{usuario.email}</p>
+                            }
+                        </div>
+
+                    </form>
+                </main>
+            </>
     )
 }
 

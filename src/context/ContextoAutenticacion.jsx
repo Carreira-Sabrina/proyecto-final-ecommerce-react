@@ -135,7 +135,7 @@ export function ProveedorContextoAutenticacion({children}){
     }
     
 
-    const value ={usuarioActual,usuarioEsAdmin, cargandoAuth, crearUsuario, iniciarSesion, cerrarSesion}
+    const value ={auth,usuarioActual,usuarioEsAdmin, cargandoAuth, crearUsuario, iniciarSesion, cerrarSesion}
 
     return (
         <ContextoAutenticacion.Provider value={value}>

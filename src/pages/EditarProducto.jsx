@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useContext, useEffect,useState } from "react";
+import { Helmet } from "react-helmet";
 
 //Contextos
 import { ContextoProductos } from "../context/ContextoProductos";
@@ -80,60 +81,68 @@ function EditarProducto(){
         }
     
         return(
-            <main>
-                <h1>Modifica los datos del producto aquí</h1>
-                <form onSubmit={onSubmitFormulario} className="formulario-productos">
-    
-                    <div className="campo-formulario">
-                        <label htmlFor="nombre">Nombre del producto:</label>
-                        <input  type="text" name="nombre" id="nombre" 
-                                value={productoModificado.nombre} onChange={onChangeCampoFormulario}
+                <>
+                    <Helmet>
+                        <title>Sección sólo para administradores | TalentoTesch Store</title>
+                        <meta   name="description"
+                                content="Aquí puedes editar los productos en la tienda"
                         />
-                    </div>
-    
-                    <div className="campo-formulario">
-                        <label htmlFor="precio">Precio del producto: $</label>
-                        <input  type="text" name="precio" id="precio" 
-                                value={productoModificado.precio} onChange={onChangeCampoFormulario} 
-                        />
-                    </div>
-    
-                    <div className="campo-formulario">
-                        <label htmlFor="imagen">URL de la imagen:</label>
-                        <input  type="text" name="imagen" id="imagen" 
-                                value={productoModificado.imagen} onChange={onChangeCampoFormulario}
-                        />
-                    </div>
-    
-                    <div className="campo-formulario">
-                        <label htmlFor="descripcion">Descripción del producto:</label>
-                        <textarea   name="descripcion" id="descripcion" 
-                                    value={productoModificado.descripcion} onChange={onChangeCampoFormulario} 
-                        />
-                    </div>
-                    <div className="botones-formulario">
-                        <button className="btn-crear-producto">Cancelar</button>
-                        <button className="btn-cancelar-creacion" type="submit">Modificar Producto</button>
-                    </div>
-    
-                    {/* Render condicional de los errores del formulario */}
-                    
-                    <div className="contenedor-errores-formulario">
-                        {
-                            Object.keys(erroresCampoFormulario).length > 0 &&
+                    </Helmet>
+                    <main>
+                        <h1>Modifica los datos del producto aquí</h1>
+                        <form onSubmit={onSubmitFormulario} className="formulario-productos">
+            
+                            <div className="campo-formulario">
+                                <label htmlFor="nombre">Nombre del producto:</label>
+                                <input  type="text" name="nombre" id="nombre" 
+                                        value={productoModificado.nombre} onChange={onChangeCampoFormulario}
+                                />
+                            </div>
+            
+                            <div className="campo-formulario">
+                                <label htmlFor="precio">Precio del producto: $</label>
+                                <input  type="text" name="precio" id="precio" 
+                                        value={productoModificado.precio} onChange={onChangeCampoFormulario} 
+                                />
+                            </div>
+            
+                            <div className="campo-formulario">
+                                <label htmlFor="imagen">URL de la imagen:</label>
+                                <input  type="text" name="imagen" id="imagen" 
+                                        value={productoModificado.imagen} onChange={onChangeCampoFormulario}
+                                />
+                            </div>
+            
+                            <div className="campo-formulario">
+                                <label htmlFor="descripcion">Descripción del producto:</label>
+                                <textarea   name="descripcion" id="descripcion" 
+                                            value={productoModificado.descripcion} onChange={onChangeCampoFormulario} 
+                                />
+                            </div>
+                            <div className="botones-formulario">
+                                <button className="btn-crear-producto">Cancelar</button>
+                                <button className="btn-cancelar-creacion" type="submit">Modificar Producto</button>
+                            </div>
+            
+                            {/* Render condicional de los errores del formulario */}
                             
-                            Object.values(erroresCampoFormulario).map((value,index)=>(
-                                <p className="errores-formulario" key={index}>{value}</p>
-                            ))
+                            <div className="contenedor-errores-formulario">
+                                {
+                                    Object.keys(erroresCampoFormulario).length > 0 &&
+                                    
+                                    Object.values(erroresCampoFormulario).map((value,index)=>(
+                                        <p className="errores-formulario" key={index}>{value}</p>
+                                    ))
+                                    
+            
+                                
+                                }
+                            </div>
                             
-    
-                        
-                        }
-                    </div>
-                    
-                </form>
-    
-            </main>
+                        </form>
+            
+                    </main>
+                </>      
         )
 
 }
