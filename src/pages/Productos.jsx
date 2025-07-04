@@ -10,6 +10,19 @@ import Error from "../components/Error";
 //Contexto
 import { ContextoProductos } from "../context/ContextoProductos";
 
+/*===================================================================================================== */
+//Styled-components
+import styled from "styled-components";
+
+const StyledInput = styled.input`
+    font-size: 1.25rem;
+    border: 2px solid #B5179E;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+`
+
+/*===================================================================================================== */
+
 function Productos(){
 
     const { productos, cargando, error,terminoBusqueda,setTerminoBusqueda } = useContext(ContextoProductos);
@@ -36,13 +49,15 @@ function Productos(){
         <main>
             <section className="seccion-busqueda">
                 <form>
-                    <input  type="text" name="buscarProductos" id="buscarProductos"
+                    <StyledInput
+                            type="text" name="buscarProductos" id="buscarProductos"
                             placeholder="Busca un producto" 
                             value={terminoBusqueda}
                             onChange={(e)=> {console.log(e.target.value) ;setTerminoBusqueda(e.target.value)}}
-                            
                     />
                 </form>
+                
+                
 
             </section>
 

@@ -21,9 +21,6 @@ export function ProveedorContextoCarrito({children}){
     //Contenido del carrito
     const [contenidoCarrito, setContenidoCarrito] = useState(cargarCarritoLocalStorage);
 
-    //Hay que contar los productos del carrito etc para actualizar el numerito del nav 🔍🦜
-    //SE HACE CON contenidoCarrito.lenght y se renderiza en forma condicional
-
     useEffect(()=>{
         guardarCarritoLocalStorage(contenidoCarrito)
     },[contenidoCarrito])
@@ -46,7 +43,6 @@ export function ProveedorContextoCarrito({children}){
         }
         else{
             producto.cantidad = 1;
-            //Actualizar contenidoCarrito //🦜🦜🦜🦜🦜🦜🦜
             setContenidoCarrito([...contenidoCarrito,producto])
         }    
     }

@@ -45,7 +45,8 @@ export function ProveedorContextoAutenticacion({children}){
         return ()=> cancelarSuscripcion();
     },[])
 
-    //Crear usuario
+    //CREAR USUARIO
+    //=============
     async function crearUsuario(email, password){
         try {
             const respuestaCreacionUsuario = await createUserWithEmailAndPassword(auth, email, password)
@@ -74,7 +75,8 @@ export function ProveedorContextoAutenticacion({children}){
         }
     }
 
-    //Iniciar sesion
+    //INICIAR SESION
+    //===============
     async function iniciarSesion(email, password) {
         try {
             const respuestaInicioSesion = await signInWithEmailAndPassword(auth,email, password);
@@ -106,7 +108,8 @@ export function ProveedorContextoAutenticacion({children}){
         }
     }
 
-
+    //CERRAR SESION
+    //==============
     async function cerrarSesion(auth) {
         try {
                 await signOut(auth);
@@ -119,6 +122,7 @@ export function ProveedorContextoAutenticacion({children}){
     }
 
     //AUXILIAR => VERIFICAR SI EL USUARIO ES ADMIN
+    //===============================================
     function usuarioEsAdministrador(usuarioAComprobar){
         if(!usuarioAComprobar) return false; //Si no hay usuario, nunca puede ser admin
         //Usuario es un objeto del tipo UserCrential que tiene una propiedad user.email
