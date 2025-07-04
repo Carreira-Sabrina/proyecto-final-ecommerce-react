@@ -20,6 +20,12 @@ const StyledInput = styled.input`
     padding: 0.5rem;
     border-radius: 0.5rem;
 `
+const StyledBusquedaVacia = styled.p`
+    font-size: 2rem;
+    text-align: center;
+    color: #F72585;
+    font-weight: bold;
+`
 
 /*===================================================================================================== */
 
@@ -65,10 +71,12 @@ function Productos(){
                 {/* Los productos se generan aqui */}
 
                 {
-                    productos.length >0    ?   productos.map((producto)=>(
+                    productos.length >0     ?   productos.map((producto)=>(
                                                         <TarjetaProducto key={producto.id} producto={producto}/>
                                                         ))
-                                                    : <p>No hay productos que cumplan con el criterio</p>    
+                                            :   <StyledBusquedaVacia>
+                                                    No hay productos que cumplan con el criterio
+                                                </StyledBusquedaVacia>    
 
 
                     

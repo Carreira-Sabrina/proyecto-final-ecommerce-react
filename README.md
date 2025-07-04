@@ -3,7 +3,7 @@
 
 ## Api utilizada
 
-[Fake Store API](https://fakestoreapi.com/)
+[MockAPI](https://mockapi.io)
 
 ## Créditos de las imágenes utilizadas
 
