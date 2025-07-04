@@ -1,10 +1,14 @@
 import { useState, useContext, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 
 //Contexto Autenticacion
 import { ContextoAutenticacion } from "../context/ContextoAutenticacion";
+
+//Styled-components
+import { AuthButton, AuthLink, AuthLinkContainer, NoteContainer } from "../components/styled-components/AuthStyledComponents";
+
 
 function Login(){
     //Estados y funciones que vienen del contexto de Autenticacion
@@ -60,11 +64,11 @@ function Login(){
                 </Helmet>
                 <main>
                     <h1>Inicia sesión</h1>
-                    <h3>
-                        No estás registrado? <Link to="/registrarse">Registrate aquí</Link>
-                    </h3>
+                    <AuthLinkContainer>
+                        No estás registrado? <span><AuthLink to="/registrarse">Registrate aquí</AuthLink></span>
+                    </AuthLinkContainer>
 
-                    <div>
+                    <NoteContainer>
                         <p> NOTA: a los efectos de prueba, y al no contar base de datos, se aceptarán como administradores los usuarios 
                             creados con los siguientes emails:
                         </p>
@@ -74,7 +78,7 @@ function Login(){
                             <li>holmes@admin.com</li>
                             <li>ghost@admin.com</li>
                         </ul>
-                    </div>
+                    </NoteContainer>
 
                     <form onSubmit={onSubmitFormularioRegistro}>
                         <div className="campo-formulario">
@@ -94,9 +98,9 @@ function Login(){
                             />
                         </div>
 
-                        <button type="submit">Iniciar sesión</button>
-
-
+                        <AuthButton type="submit">
+                            Iniciar sesión
+                        </AuthButton>
                     </form>
                 </main>
             </>

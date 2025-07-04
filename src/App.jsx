@@ -19,7 +19,7 @@ import PaginaProducto from './pages/PaginaProducto'
 import Login from './pages/Login'
 import CrearProducto from './pages/CrearProducto'
 import EditarProducto from './pages/EditarProducto'
-import RegistrarUsuario from './pages/ResgistrarUsuario'
+import RegistrarUsuario from './pages/RegistrarUsuario'
 import AdminDashboard from './pages/AdminDashboard'
 
 

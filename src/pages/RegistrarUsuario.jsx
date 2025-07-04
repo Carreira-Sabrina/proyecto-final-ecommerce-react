@@ -1,10 +1,12 @@
 import { useState, useContext } from "react";
-import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 
 //Contexto Autenticación
 import { ContextoAutenticacion } from "../context/ContextoAutenticacion";
+
+//Styled-components
+import { AuthButton, AuthLink, AuthLinkContainer, NoteContainer } from "../components/styled-components/AuthStyledComponents";
 
 
 function RegistrarUsuario(){
@@ -26,10 +28,6 @@ function RegistrarUsuario(){
 
         //Limpiar formulario
         setCredencialesUsuario({email:"", password:""})
-
-        //Redirect 🦜🦜🦜❓❓❓❓❓❓❓
-        //ANTES DEL REDIRECT HABRIA QUE VER SI EL USUARIO ES ADMIN ???
-
     }
 
     return(
@@ -43,11 +41,11 @@ function RegistrarUsuario(){
 
                 <main>
                     <h1>Crea tu usuario</h1>
-                    <h3>
-                        Ya estás registado? <Link to="/login">Inicia sesión</Link> 
-                    </h3>
+                    <AuthLinkContainer>
+                        Ya estás registado? <span><AuthLink to="/login">Inicia sesión</AuthLink></span>
+                    </AuthLinkContainer>
 
-                    <div>
+                    <NoteContainer>
                         <p> NOTA: a los efectos de prueba, y al no contar base de datos, se aceptarán como administradores los usuarios 
                             creados con los siguientes emails:
                         </p>
@@ -57,7 +55,7 @@ function RegistrarUsuario(){
                             <li>holmes@admin.com</li>
                             <li>ghost@admin.com</li>
                         </ul>
-                    </div>
+                    </NoteContainer>
 
                     <form onSubmit={onSubmitFormularioRegistro}>
                         <div className="campo-formulario">
@@ -77,7 +75,7 @@ function RegistrarUsuario(){
                             />
                         </div>
 
-                        <button type="submit">Crear usuario</button>
+                        <AuthButton type="submit">Crear usuario</AuthButton>
 
 
 
