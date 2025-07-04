@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import Swal from "sweetalert2";
 
 //Firebase
 import {auth} from "../firebase";
@@ -14,7 +15,7 @@ export const ContextoAutenticacion = createContext()
 
 export function ProveedorContextoAutenticacion({children}){
 
-    //Una array de objetos de usuarios ADMIN, bajo presupuesto, no hay DB ;)
+    //Una array de objetos de usuarios ADMIN, bajo presupuesto, no hay DB ;) 🦜🦜🦜🦜🦜🦜
     const admins = [
         {email: "admin@admin.com", password: "admin1234"},
         {email: "optimus@admin.com", password: "optimusprime"},
@@ -46,34 +47,29 @@ export function ProveedorContextoAutenticacion({children}){
 
     //Crear usuario
     async function crearUsuario(email, password){
-
         try {
             const respuestaCreacionUsuario = await createUserWithEmailAndPassword(auth, email, password)
             //EL ESTADO GLOBAL NO SE SETEA AQUÍ SINO EN EL USE EFFECT MEDIANTE onAuthStateChanged
 
-            //SWEET ALERT 🦜🦜🦜🦜🦜
-            alert("USUARIO CREADO CORRECTAMENTE 😊")
-
+            Swal.fire({text:"Usuario creado correctamente 😊", icon: "success", confirmButtonColor:"#560BAD"})
+    
             //EL ESTADO DE ADMINISTRADOR TAMPOCO SE SETEA AQUÍ POR EL MISMO MOTIVO
-
-            //probamos, si, con lanzar un alert 🦜🦜🦜
-            if(usuarioEsAdmin){
-                alert("EL USUARIO ES ADMIN 🤖")
-            }else{
-                alert("NO ADMIN 👻")
-            }
-            //vamos a ver que sale de aca  HAY QUE HACER RETURN O SETEAR EL ESTADO? 🦜🦜🦜🦜❓❓❓❓❓
             return respuestaCreacionUsuario
 
         } catch (error) {
-            //PROVISORIO 🦜🦜🦜🦜🦜🦜🦜
-            alert("HUBO UN ERROR EN LA CREACION DEL USUARIO")
-
             if (error.code == AuthErrorCodes.EMAIL_EXISTS){
-                alert("ESE MAIL YA FUE USADO 🐭")
+                Swal.fire({
+                    title:"Error en la creación del usuario",
+                    text: "Ya hay una cuenta creada con ese mail",
+                    icon: "error"
+                })
             }
             if(error.code == AuthErrorCodes.WEAK_PASSWORD){
-                alert("pass muy corto 🐭")
+                Swal.fire({
+                    title:"Error en la creación del usuario",
+                    text: "La contraseña debe contener al menos 8 caracteres",
+                    icon: "error"
+                })
             }
         }
     }
@@ -89,25 +85,23 @@ export function ProveedorContextoAutenticacion({children}){
             // y actualizará el estado global de forma reactiva.
             
 
-            //SWEET ALERT 🦜🦜🦜🦜🦜
-            alert("SESION INICIADA CORRECTAMENTE 😊")
+            //SWEET ALERT 🦜🦜🦜🦜🦜 Y EL REDIRECT? 🦜🦜🦜❓❓❓
+            Swal.fire({text:"Sesión iniciada correctamente 😊", icon: "success", confirmButtonColor:"#560BAD"})
 
             
 
         } catch (error) {
-            //PROVISORIO 🦜🦜🦜🦜🦜🦜🦜
-            alert("HUBO UN ERROR EN EL INICIO DE SESION")
-            console.log(error.message)
-            console.log(error.code)
+            Swal.fire({text:"Problemas con el inicio de sesión", icon: "error", confirmButtonColor:"#F72585"})
             if (error.code == AuthErrorCodes.INVALID_EMAIL){
-                alert("ESE MAIL NO ESTÁ REGISTRADO 🤡")
+                Swal.fire({text:"No hay un usuario con ese email registrado", icon: "error", confirmButtonColor:"#F72585"})
             }
             if(error.code == AuthErrorCodes.INVALID_PASSWORD){
-                alert("EL PASSWORD ES INCORRECTO 🤦‍♀️")
+                Swal.fire({text:"Password incorrecto", icon: "error", confirmButtonColor:"#F72585"})
             }
             //Los dos if anteriores no se disparan porque el error es auth/invalid-credential 🦜🦜🦜🦜🦜🦜🦜
             if(error.code == AuthErrorCodes.INVALID_LOGIN_CREDENTIALS){
-                alert("EL MAIL O LA CONTRASEÑA SON INCORRECTOS 😫")
+                Swal.fire({text:"El email o la contraseña son incorrectos", icon: "error", confirmButtonColor:"#F72585"})
+                
             }
         }
     }
@@ -118,10 +112,9 @@ export function ProveedorContextoAutenticacion({children}){
                 await signOut(auth);
                 // onAuthStateChanged se encargará de setear usuarioActual a null
                 // y usuarioEsAdmin a false.
-                alert("SESION CERRADA CORRECTAMENTE 👋");
+                Swal.fire({text:"Sesión cerrada correctamente 😊", icon: "success", confirmButtonColor:"#560BAD"})
             } catch (error) {
-            alert("Hubo un error al cerrar la sesión");
-            console.log(error.message);
+            Swal.fire({text:"Error al cerrar sesión", icon: "error", confirmButtonColor:"#F72585"})
             }
     }
 

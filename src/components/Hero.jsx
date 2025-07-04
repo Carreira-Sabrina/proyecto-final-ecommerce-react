@@ -3,10 +3,6 @@ import "../styles/Hero.css"
 //Importar imagenes
 import heroImgColumnaIzq from "../assets/hero-img/pexels-kindelmedia-7007187.jpg"
 import heroImgColumnaDer from "../assets/hero-img/pexels-kindelmedia-6868178.jpg"
-//import heroImgColumnaCtro1 from "../assets/hero-img/pexels-kampus-7289723.jpg"
-//import heroImgColumnaCtro2 from "../assets/hero-img/pexels-max-fischer-5872177.jpg"
-
-
 
 function Hero(){
 
