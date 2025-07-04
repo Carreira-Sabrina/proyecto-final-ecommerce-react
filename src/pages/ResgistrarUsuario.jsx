@@ -12,7 +12,7 @@ function RegistrarUsuario(){
     const [errorFormulario, setErrorFormulario] = useState({})
 
     //Estados y funciones que vienen del contexto de Autenticacion
-    const {usuario, crearUsuario} = useContext(ContextoAutenticacion)
+    const {crearUsuario} = useContext(ContextoAutenticacion)
 
     function onChangeCamposFormulario(e){
         const {name, value} = e.target;
@@ -79,12 +79,7 @@ function RegistrarUsuario(){
 
                         <button type="submit">Crear usuario</button>
 
-                        <div>
-                            <p>Debug</p>
-                            {
-                                usuario && <p>{usuario.email}</p>
-                            }
-                        </div>
+
 
                     </form>
                 </main>

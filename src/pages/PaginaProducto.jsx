@@ -8,9 +8,12 @@ import "../styles/PaginaProducto.css"
 //Contextos
 import { ContextoCarrito } from "../context/ContextoCarrito";
 import { ContextoProductos } from "../context/ContextoProductos";
+import { ContextoAutenticacion } from "../context/ContextoAutenticacion";
 
 //React icons
 import { FaCartPlus } from "react-icons/fa6";
+import { FaTrashCan } from "react-icons/fa6";
+import { FaRegEdit } from "react-icons/fa";
 
 //Componentes
 import Cargando from "../components/Cargando";
@@ -23,7 +26,9 @@ function PaginaProducto(){
 
     const {cargando, error, producto, obtenerProducto, eliminarProducto, modificarProducto} = useContext(ContextoProductos);
 
-    const {contenidoCarrito,agregarProductoAlCarrito} = useContext(ContextoCarrito)
+    const {contenidoCarrito,agregarProductoAlCarrito} = useContext(ContextoCarrito);
+
+    const{usuarioEsAdmin} = useContext(ContextoAutenticacion);
 
 
     function enviarProductoAlCarrito(producto){
@@ -98,12 +103,26 @@ function PaginaProducto(){
                                 <div className="contenerdor-navegacion">
                                 <Link to="/productos" className="btn-navegacion">Volver al listado de productos</Link>
                                 </div>
+                                {/*Botones que sólo se renderizan si el usuario es admin */}
+                                {
+                                    usuarioEsAdmin&&
+                                        <div className="botones-admin">
+                                            <h3>Sección solo para Administradores</h3>
+                                            <button onClick={()=>eliminarProducto(id)}
+                                                    className="btn-tarjeta-producto btn-admin-eliminar"
+                                            >
+                                                Eliminar <span><FaTrashCan/></span> 
+                                            </button>
+                                            <Link   to={`/editarproducto/${id}`}
+                                                    className="btn-navegacion btn-admin-editar"
+                                            >
+                                                Editar
+                                                <span> <FaRegEdit/> </span>
+                                            </Link>
+                                        </div>
+                                }
+
                             </div>
-
-                            {/*DEBUG */}
-                            <button onClick={()=>eliminarProducto(id)}>Eliminar</button>
-                            <Link to={`/editarproducto/${id}`}>Editar</Link>
-
 
                         </article>
                     }

@@ -48,4 +48,39 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+/*Sección sólo para administradores*/
 
+.botones-admin{
+    margin-top: 1.25rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap:1rem;    
+    border: 2px solid var(--color-fandango);
+    border-radius: 0.75rem;
+}
+
+.botones-admin h3{
+    margin-top: 1.5rem;
+}
+
+.btn-admin-eliminar{
+    background-color: #E83151;
+    color: var(--color-magnolia)
+}
+
+.btn-admin-editar{
+    background-color: #00AFB5;
+}
+
+/*==============================================================================*/
+/*MEDIA QUERIES*/
+@media (max-width: 640px) {
+    .contenedor-producto{
+        flex-direction: column;
+        justify-content: center;
+    }
+    .contenedor-producto__imagen{
+        width: 100%;
+    }
+}

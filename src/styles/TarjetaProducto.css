@@ -5,12 +5,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.75rem;
-
-
-    /*box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;*/
     box-shadow: 2px 6px 15px 0px rgba(86,11,173,0.7);
     border-radius: 1.25rem;
-
 }
 
 .tarjeta-producto__img{
@@ -46,12 +42,16 @@
 .btn-tarjeta-producto{
     font-family: inherit;
     font-size: 1.25rem;
-    padding: 8px 12px;
+    padding: 10px 14px;
     border-radius: 10px;
     color: var(--color-magnolia);
     cursor: pointer;
     margin-top: 1rem;
     transition: all 0.3s ease-in-out;
+}
+
+.btn-tarjeta-producto span{
+    margin-left: 0.5rem;
 }
 
 

@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 //Firebase
@@ -14,6 +15,8 @@ import {    createUserWithEmailAndPassword,
 export const ContextoAutenticacion = createContext()
 
 export function ProveedorContextoAutenticacion({children}){
+
+    const navigate = useNavigate()
 
     //Una array de objetos de usuarios ADMIN, bajo presupuesto, no hay DB ;) 🦜🦜🦜🦜🦜🦜
     const admins = [
@@ -90,8 +93,6 @@ export function ProveedorContextoAutenticacion({children}){
             //SWEET ALERT 🦜🦜🦜🦜🦜 Y EL REDIRECT? 🦜🦜🦜❓❓❓
             Swal.fire({text:"Sesión iniciada correctamente 😊", icon: "success", confirmButtonColor:"#560BAD"})
 
-            
-
         } catch (error) {
             Swal.fire({text:"Problemas con el inicio de sesión", icon: "error", confirmButtonColor:"#F72585"})
             if (error.code == AuthErrorCodes.INVALID_EMAIL){
@@ -126,7 +127,6 @@ export function ProveedorContextoAutenticacion({children}){
     function usuarioEsAdministrador(usuarioAComprobar){
         if(!usuarioAComprobar) return false; //Si no hay usuario, nunca puede ser admin
         //Usuario es un objeto del tipo UserCrential que tiene una propiedad user.email
-        
         const test = admins.some((admin) => admin.email === usuarioAComprobar.email); //usar some para booleanos
         return test
     }

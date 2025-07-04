@@ -22,25 +22,12 @@ function Login(){
         //Si la autenticación ya cargó y si hay un usuario
         if (!cargandoAuth && usuarioActual) {
             if (usuarioEsAdmin) {
-                // REDIRIGIR A UN DASHBOARD (ADMIN) 
                 navigate("/dashboardadmin");
             } else {
-                //TODO: REDIRIGIR A UN DASHBOARD (NO ADMIN)🦜🦜🦜🦜🦜🦜
-                console.log("Redirigiendo a /productos (USUARIO NO ES ADMIN)");
                 navigate("/productos");
             }
         }
-        // Si no hay usuario (es decir, después de un logout o si no se ha iniciado sesión)
-        // y ya no está cargando, podemos redirigir a una página de inicio de sesión
-        // o dejarlo en la página actual si ya está en ella.
-        if (!cargandoAuth && !usuarioActual) {
-            console.log("Condición de no usuario (no cargando y NO hay usuario)");
-            // Opcional: podrías redirigir a "/" o alguna otra página si el usuario no está logueado
-            // if (window.location.pathname !== "/") {
-            //     navigate("/");
-            // }
-
-        }
+        
     }, [usuarioActual, usuarioEsAdmin, cargandoAuth, navigate]); // Dependencias del useEffect
 
 
@@ -117,6 +104,5 @@ function Login(){
     )
 
 }
-
 
 export default Login;

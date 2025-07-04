@@ -11,6 +11,9 @@ import { ProveedorContextoProductos } from './context/ContextoProductos.jsx'
 import { ProveedorContextoAutenticacion } from './context/ContextoAutenticacion.jsx'
 
 
+
+
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>

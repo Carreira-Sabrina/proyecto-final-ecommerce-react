@@ -9,15 +9,17 @@ import { ContextoAutenticacion } from "../context/ContextoAutenticacion";
 import { ContextoProductos } from "../context/ContextoProductos";
 
 //React icons
-import { FaCartPlus } from "react-icons/fa6"; // <FaCartPlus />
-import { CgWebsite } from "react-icons/cg"; //<CgWebsite /> para boton de ver detalle (va a pagina dinamica)
+import { FaCartPlus } from "react-icons/fa6";
+import { CgWebsite } from "react-icons/cg";
+import { FaRegEdit } from "react-icons/fa";
 
 
 function TarjetaProducto({producto}){
 
-    //Functiones que vinen del contexto
+    //Functiones y estados que vinen del contexto
     const {agregarProductoAlCarrito} = useContext(ContextoCarrito)
     const {eliminarProducto} = useContext(ContextoProductos)
+    const {usuarioEsAdmin} = useContext(ContextoAutenticacion);
 
     const {id, nombre, precio, descripcion, imagen} = producto;
 
@@ -31,18 +33,33 @@ function TarjetaProducto({producto}){
                 <h3>{nombre}</h3>
                 <p>${precio}</p>
                 <div className="tarjeta-producto__botones">
-                    {/* botones agregar y eliminar al carrito */}
-                    <button className="btn-tarjeta-producto btn-agregar-carrito" 
-                            onClick={()=>agregarProductoAlCarrito(producto)}>
+                    {/* Hay algunos cambios en los botones dependiendo si el usuario es admin o no */}
+                    <button    className="btn-tarjeta-producto btn-agregar-carrito" 
+                                onClick={()=>agregarProductoAlCarrito(producto)}>
                                 Agregar al carrito <span><FaCartPlus /></span>
                     </button>
 
                     <Link to={`/productos/${id}`} className="btn-tarjeta-producto btn-pagina-dinamica">
-                        Ver detalle <span><CgWebsite /></span>
+                        {
+                            usuarioEsAdmin  ?   (   
+                                                    <>
+                                                        Ver detalle y editar
+                                                        <span><FaRegEdit /></span>
+                                                    </>
+
+                                                )
+                                            :   (   
+                                                    <>
+                                                        Ver detalle
+                                                        <span><CgWebsite /></span>
+                                                    </>
+
+                                                )
+                        }
+                                                    
                     </Link>
 
                 </div>
-                
             </div>
             
 

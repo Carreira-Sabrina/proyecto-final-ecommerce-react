@@ -1,6 +1,6 @@
 import { useState, useContext } from "react"
-import { Link } from "react-router-dom";
-
+import { Link, replace, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 //Css
 import "../styles/Navbar.css"
 
@@ -24,6 +24,8 @@ function Navbar(){
     const {contenidoCarrito} = useContext(ContextoCarrito)
     const {auth,usuarioActual,usuarioEsAdmin,cerrarSesion} = useContext(ContextoAutenticacion)
 
+    const navigate = useNavigate();
+
     function cambiarMenuMovil(){
         setMostrarMenuMovil(!mostrarMenuMovil);
     }
@@ -37,9 +39,17 @@ function Navbar(){
 
     //Manejador del botón de cierre de sesion
     function manejardorCerrarSesion(){
-        //DEBUG 🦜🦜🦜🦜
-        alert("SE VA A CERRAR LA SESION")
-        cerrarSesion(auth);
+        Swal.fire({
+            text: "Estás seguro que quieres cerrar la sesión?",
+            icon:"question",
+            showCancelButton: true,
+            confirmButtonText: "Cerrar sesión"
+        }).then((result)=>{
+            if(result.isConfirmed){
+                cerrarSesion(auth);
+                navigate("/",replace)
+            }
+        })
     }
 
     return(
