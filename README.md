@@ -10,6 +10,7 @@
 - [React Toastify - Notificaciones](https://www.npmjs.com/package/react-toastify)
 - [SweetAlert2 - Alerts personalizados](https://sweetalert2.github.io/)
 
+## Autenticación de usuarios con [Firebase Auth](https://firebase.google.com/docs/auth)
 
 ## Créditos de las imágenes utilizadas
 
