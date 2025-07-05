@@ -13,6 +13,7 @@ import { ContextoProductos } from "../context/ContextoProductos";
 /*===================================================================================================== */
 //Styled-components
 import styled from "styled-components";
+import PaginacionProductos from "../components/PaginacionProductos";
 
 const StyledInput = styled.input`
     font-size: 1.25rem;
@@ -32,6 +33,19 @@ const StyledBusquedaVacia = styled.p`
 function Productos(){
 
     const { productos, cargando, error,terminoBusqueda,setTerminoBusqueda } = useContext(ContextoProductos);
+
+    //Para la paginación
+    const [paginaActual, setPaginaActual] = useState(1);
+    const cantidadProductos = productos.length;
+    const productosPorPagina = 6;
+    const indiceUltimoProducto = paginaActual * productosPorPagina;
+    const indicePrimerProducto = indiceUltimoProducto - productosPorPagina;
+    const productosEnPagina = productos.slice(indicePrimerProducto,indiceUltimoProducto);
+
+    //Para eliminar conflicto entre paginacion y filtro
+    useEffect(() => {
+        setPaginaActual(1);
+    }, [productos, terminoBusqueda]);
 
     //Estado de carga
     if(cargando){
@@ -59,7 +73,7 @@ function Productos(){
                             type="text" name="buscarProductos" id="buscarProductos"
                             placeholder="Busca un producto" 
                             value={terminoBusqueda}
-                            onChange={(e)=> {console.log(e.target.value) ;setTerminoBusqueda(e.target.value)}}
+                            onChange={(e)=> setTerminoBusqueda(e.target.value)}
                     />
                 </form>
                 
@@ -71,7 +85,7 @@ function Productos(){
                 {/* Los productos se generan aqui */}
 
                 {
-                    productos.length >0     ?   productos.map((producto)=>(
+                    productos.length >0     ?   productosEnPagina.map((producto)=>(
                                                         <TarjetaProducto key={producto.id} producto={producto}/>
                                                         ))
                                             :   <StyledBusquedaVacia>
@@ -81,6 +95,14 @@ function Productos(){
 
                     
                 }
+                
+            </section>
+            <section>
+                <PaginacionProductos 
+                    cantidadProductos={cantidadProductos} 
+                    productosPorPagina={productosPorPagina}
+                    setPaginaActual={setPaginaActual}
+                />
             </section>
 
         </main>

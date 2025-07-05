@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { Helmet } from "react-helmet";
-
+import { ToastContainer, toast } from "react-toastify";
 //Css
 import "../styles/PaginaProducto.css"
 
@@ -97,7 +97,7 @@ function PaginaProducto(){
                                 {/*hay que llamar a una funcion que ubique al item en el carrito y si existe,*/}
                                 {/*mandarlo con la cantidad*/}
                                 <button className="btn-tarjeta-producto btn-agregar-carrito" 
-                                        onClick={()=>enviarProductoAlCarrito(producto)}>
+                                        onClick={()=>{enviarProductoAlCarrito(producto); toast.success("Producto agregado al carrito") }}>
                                         Agregar al carrito <span><FaCartPlus /></span>
                                 </button>
                                 <div className="contenerdor-navegacion">
@@ -126,7 +126,7 @@ function PaginaProducto(){
 
                         </article>
                     }
-                    
+                <ToastContainer/>    
                 </main>
             </>
                 

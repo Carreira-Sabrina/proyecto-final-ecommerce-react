@@ -5,7 +5,8 @@ import "../styles/Carrito.css"
 
 //SweetAlert
 import Swal from 'sweetalert2'        
-
+//Toastify
+import { ToastContainer } from "react-toastify";
 //Contexto 
 import { ContextoCarrito } from "../context/ContextoCarrito";
 
@@ -15,6 +16,7 @@ import ItemCarrito from "../components/ItemCarrito";
 //React icons
 import { FaCircleCheck } from "react-icons/fa6"; //<FaCircleCheck />
 import { FaCircleXmark } from "react-icons/fa6"; //<FaCircleXmark />
+
 
 
 function Carrito(){
@@ -142,7 +144,7 @@ function Carrito(){
                     
                     
                 </div>
-            
+            <ToastContainer/>
             </main>
         </>
         

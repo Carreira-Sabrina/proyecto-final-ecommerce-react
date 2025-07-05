@@ -1,4 +1,5 @@
 import { useState, useContext } from "react"
+import { toast } from "react-toastify";
 
 //Css
 import "../styles/ItemCarrito.css"
@@ -69,7 +70,9 @@ function ItemCarrito({producto}){
                 <p className="producto__data__precio">Precio unitario <span>${producto.precio}</span></p>
                 <button aria-label="Eliminar producto del carrito"
                         className="btn-producto btn-producto__eliminar" 
-                        onClick={()=>eliminarProductoDelCarrito(datosProducto)}>
+                        onClick={()=>{{eliminarProductoDelCarrito(datosProducto); 
+                            toast.warning("Producto eliminado del carrito")}} 
+                        }>
                             <FaTrashCan aria-hidden="true" />
                 </button>
             </div>
@@ -93,7 +96,6 @@ function ItemCarrito({producto}){
             <div className="producto__data__subtotal">
                         <p>Subtotal <span>${producto.cantidad * producto.precio}</span></p>
             </div>        
-                    
         </article>
     )
 }

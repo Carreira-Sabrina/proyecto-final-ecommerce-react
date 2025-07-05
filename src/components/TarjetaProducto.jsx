@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 //Css
 import "../styles/TarjetaProducto.css"
 
@@ -35,7 +36,10 @@ function TarjetaProducto({producto}){
                 <div className="tarjeta-producto__botones">
                     {/* Hay algunos cambios en los botones dependiendo si el usuario es admin o no */}
                     <button    className="btn-tarjeta-producto btn-agregar-carrito" 
-                                onClick={()=>agregarProductoAlCarrito(producto)}>
+                                onClick={()=>{
+                                agregarProductoAlCarrito(producto);
+                                toast.success("Producto agregado al carrito")
+                                }}>
                                 Agregar al carrito <span><FaCartPlus /></span>
                     </button>
 
@@ -61,8 +65,7 @@ function TarjetaProducto({producto}){
 
                 </div>
             </div>
-            
-
+            <ToastContainer/>
         </article>
     ) 
 }

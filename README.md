@@ -5,6 +5,12 @@
 
 [MockAPI](https://mockapi.io)
 
+## Librerías utilizadas
+- [React Helmet - Optimización para SEO](https://www.npmjs.com/package/react-helmet)
+- [React Toastify - Notificaciones](https://www.npmjs.com/package/react-toastify)
+- [SweetAlert2 - Alerts personalizados](https://sweetalert2.github.io/)
+
+
 ## Créditos de las imágenes utilizadas
 
 Imágenes obtenidas en [Pexels](https://www.pexels.com/)

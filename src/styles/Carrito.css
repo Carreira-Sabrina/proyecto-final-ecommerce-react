@@ -7,6 +7,8 @@
 
 .contenedor_carrito_vacio{
     font-size: 2rem;
+    color: #FF5A5F;
+    font-weight: bolder;
 }
 
 .display-checkout-carrito{

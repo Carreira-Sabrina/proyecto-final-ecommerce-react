@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export const ContextoProductos = createContext();
 
@@ -100,18 +101,21 @@ export function ProveedorContextoProductos({children}){
             }
             const data = await respuesta.json();
             console.log('Producto agregado:', data);
-            alert('Producto agregado correctamente');
+            
 
             //Actualizar la lista de productos
             const listaActualizada = [...productos, data]
             setProductos(listaActualizada)
+            //Ahora si la api cambió !
+            setProductosApi(listaActualizada)
 
+            Swal.fire({text:"Producto agregado correctamente", icon:"success"})
 
-            //NO HAY QUE HACER UN REDIRECT? 🦜🦜🦜🦜🦜🦜🦜
+            //Redirect
             navigate('/productos',{ replace: true })
 
         } catch (error) {
-            alert('HUBO UN PROBLEMA AL AGREGAR EL PRODUCTO');
+            Swal.fire({text:"Hubo un problema con la creación del producto", icon:"error"})
         }
     }
 
@@ -133,19 +137,18 @@ export function ProveedorContextoProductos({children}){
                 throw new Error(`Error al crear el producto ${respuesta.status}`)      
             }
             const data = await respuesta.json();
-            console.log('Producto MODIFICADO:', data);
-            alert('Producto MODIFICADO correctamente');
-
+            
             //Actualizar la lista de productos
             const listaActualizada = productos.map((item)=> item.id === producto.id ? producto : item)
             setProductos(listaActualizada)
 
+            Swal.fire({text:"Producto modificado correctamente", icon:"success"})
 
-            //NO HAY QUE HACER UN REDIRECT? 🦜🦜🦜🦜🦜🦜🦜
             navigate('/productos',{ replace: true })
 
         } catch (error) {
-            alert('HUBO UN PROBLEMA AL MODIFICAR EL PRODUCTO');
+            
+            Swal.fire({text:"Hubo un problema al modificar producto", icon:"error"})
         }
     }
 
@@ -162,23 +165,24 @@ export function ProveedorContextoProductos({children}){
                 console.log(`El error ha sido ${respuesta.status}`)
                 throw new Error(`Error al eliminar el producto ${respuesta.status}`)      
             }
-            alert('Producto eliminado correctamente');
+            Swal.fire({text:"Producto eliminado correctamente", icon:"success"})
 
             //Actualizar la lista de productos
-            const listaActualizada = productosFiltrados.filter((item)=>item.id !== id)
+            const listaActualizada = productos.filter((item)=>item.id !== id)
             setProductos(listaActualizada)
 
             //redireccionar a la pagina de productos
             navigate('/productos',{ replace: true })
 
-        } catch (error) {
-            alert('HUBO UN PROBLEMA AL ELIMINAR EL PRODUCTO');
+        } catch (err) {
+            Swal.fire({text:"Hubo un problema al intentar eliminar el producto", icon:"error"})
+            console.log(err.message)
             }
     }
 
 
 
-    const value =   {   productos, setProductos, producto, cargando, error, terminoBusqueda,setTerminoBusqueda, filtrarProductosPorNombre,
+    const value =   {   productos, productosApi, setProductos, producto, cargando, error, terminoBusqueda,setTerminoBusqueda, filtrarProductosPorNombre,
                         obtenerProductosAPI,obtenerProducto,crearProducto,eliminarProducto,modificarProducto}
 
     return(

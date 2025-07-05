@@ -1,4 +1,5 @@
 import { useState,useContext } from "react";
+import { useNavigate,Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 //Css
@@ -18,6 +19,8 @@ function CrearProducto(){
 
     //Errores de los input
     const [erroresCampoFormulario, setErroresCampoFormulario] = useState({})
+
+    const navigate = useNavigate();
 
     function onChangeCampoFormulario(e){
         const {name, value} = e.target;
@@ -70,6 +73,7 @@ function CrearProducto(){
         
     }
 
+
     return(
         <>
             <Helmet>
@@ -110,8 +114,8 @@ function CrearProducto(){
                         />
                     </div>
                     <div className="botones-formulario">
-                        <button className="btn-crear-producto">Cancelar</button>
-                        <button className="btn-cancelar-creacion" type="submit">Crear nuevo producto</button>
+                        <Link  to="/dashboardadmin" className="btn-cancelar-creacion">Cancelar</Link>
+                        <button className="btn-crear-producto" type="submit">Crear nuevo producto</button>
                     </div>
 
                     {/* Render condicional de los errores del formulario */}
