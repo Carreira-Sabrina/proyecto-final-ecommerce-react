@@ -1,7 +1,8 @@
 import { useParams, Link } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { Helmet } from "react-helmet";
 import { ToastContainer, toast } from "react-toastify";
+import Swal from "sweetalert2";
 //Css
 import "../styles/PaginaProducto.css"
 
@@ -44,6 +45,30 @@ function PaginaProducto(){
         else{
             agregarProductoAlCarrito(producto)
         }
+    }
+
+    function manejadorEliminarProducto(id){
+        Swal.fire({
+            title: "¿Estás seguro que quieres eliminar el producto?",
+            text: "Esta acción no se puede revertir",
+            icon: "warning",
+            iconColor: "#dc143c",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Eliminar producto",
+            cancelButtonText: "Cancelar",
+            customClass: {
+                title: "custom-swal-title",
+                htmlContainer: "custom-swal-text",
+                confirmButton: "custom-swal-confirm-btn",
+                cancelButton: "custom-swal-cancel-btn"
+            }
+        }).then((result)=>{
+            if(result.isConfirmed){
+                eliminarProducto(id)
+            }
+        })
     }
 
     useEffect(()=>{
@@ -108,7 +133,7 @@ function PaginaProducto(){
                                     usuarioEsAdmin&&
                                         <div className="botones-admin">
                                             <h3>Sección solo para Administradores</h3>
-                                            <button onClick={()=>eliminarProducto(id)}
+                                            <button onClick={()=>manejadorEliminarProducto(id)}
                                                     className="btn-tarjeta-producto btn-admin-eliminar"
                                             >
                                                 Eliminar <span><FaTrashCan/></span> 

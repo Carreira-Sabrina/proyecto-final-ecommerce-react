@@ -109,13 +109,30 @@ export function ProveedorContextoProductos({children}){
             //Ahora si la api cambió !
             setProductosApi(listaActualizada)
 
-            Swal.fire({text:"Producto agregado correctamente", icon:"success"})
+            Swal.fire({
+                text:"Producto agregado correctamente", 
+                icon:"success",
+                customClass:{
+                    htmlContainer: "custom-swal-text",
+                    confirmButton: "custom-swal-confirm-btn",
+                }
+            })
 
             //Redirect
             navigate('/productos',{ replace: true })
 
         } catch (error) {
-            Swal.fire({text:"Hubo un problema con la creación del producto", icon:"error"})
+            Swal.fire({
+                        text: "Hubo un problema con la creación del producto",
+                        icon: "error",
+                        iconColor: "#dc143c",
+                        confirmButtonColor: "#3085d6",
+                        confirmButtonText: "Entendido",
+                        customClass: {
+                            htmlContainer: "custom-swal-text",
+                            confirmButton: "custom-swal-confirm-btn",
+                        }
+                });       
         }
     }
 
@@ -142,13 +159,28 @@ export function ProveedorContextoProductos({children}){
             const listaActualizada = productos.map((item)=> item.id === producto.id ? producto : item)
             setProductos(listaActualizada)
 
-            Swal.fire({text:"Producto modificado correctamente", icon:"success"})
+            Swal.fire({
+                text:"Producto modificado correctamente", 
+                icon:"success",
+                customClass:{
+                    htmlContainer: "custom-swal-text",
+                    confirmButton: "custom-swal-confirm-btn",
+                }
+            })
 
             navigate('/productos',{ replace: true })
 
         } catch (error) {
             
-            Swal.fire({text:"Hubo un problema al modificar producto", icon:"error"})
+            Swal.fire({
+                text:"Hubo un problema al modificar producto", 
+                icon:"error",
+                iconColor:"#dc143c",
+                customClass:{
+                    htmlContainer: "custom-swal-text",
+                    confirmButton: "custom-swal-confirm-btn",
+                }
+            })
         }
     }
 
@@ -165,7 +197,14 @@ export function ProveedorContextoProductos({children}){
                 console.log(`El error ha sido ${respuesta.status}`)
                 throw new Error(`Error al eliminar el producto ${respuesta.status}`)      
             }
-            Swal.fire({text:"Producto eliminado correctamente", icon:"success"})
+            Swal.fire({
+                text:"Producto eliminado correctamente", 
+                icon:"success",
+                customClass:{
+                    htmlContainer: "custom-swal-text",
+                    confirmButton: "custom-swal-confirm-btn",
+                }
+            })
 
             //Actualizar la lista de productos
             const listaActualizada = productos.filter((item)=>item.id !== id)
@@ -175,7 +214,15 @@ export function ProveedorContextoProductos({children}){
             navigate('/productos',{ replace: true })
 
         } catch (err) {
-            Swal.fire({text:"Hubo un problema al intentar eliminar el producto", icon:"error"})
+            Swal.fire({
+                text:"Hubo un problema al intentar eliminar el producto", 
+                icon:"error",
+                iconColor:"#dc143c",
+                customClass:{
+                    htmlContainer: "custom-swal-text",
+                    confirmButton: "custom-swal-confirm-btn"
+                }
+            })
             console.log(err.message)
             }
     }

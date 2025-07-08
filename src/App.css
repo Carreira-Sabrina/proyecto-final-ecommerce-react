@@ -41,3 +41,25 @@ img{
   max-width: 1280px;
   margin: 0 auto;
 }
+
+
+/*Sweetalert2 custom classes*/
+.custom-swal-title{
+  font-family: var(--font-family-accent);
+}
+
+.custom-swal-text{
+  font-weight: bold;
+  color: #dc143c;
+  font-family: var(--font-family-regular);
+}
+
+.custom-swal-confirm-btn{
+  font-weight: bold;
+  background-color: var(--color-chrysler-blue);
+}
+
+.custom-swal-cancel-btn{
+  font-weight: bold;
+  background-color: var(--color-rose);
+}

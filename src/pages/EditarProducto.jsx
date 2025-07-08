@@ -57,8 +57,7 @@ function EditarProducto(){
     
         setErroresCampoFormulario(erroresFormulario)
     
-        //Si el return da un objeto no vacío es que algo anda mal con el formulario
-    
+        //Si el return da un objeto no vacío es que algo anda mal con el formulario  
         return Object.keys(erroresFormulario).length === 0;
     }
     
@@ -77,8 +76,7 @@ function EditarProducto(){
             //ESTE ES UN BUEN LUGAR PARA UN SWEETALERT !!!!! 🦜🦜🦜🦜🦜🦜
             console.log("FALTAN DATOS EN EL FORMULARIO")
             }
-            
-        }
+    }
     
         return(
                 <>
@@ -120,8 +118,8 @@ function EditarProducto(){
                                 />
                             </div>
                             <div className="botones-formulario">
-                                <button className="btn-crear-producto">Cancelar</button>
-                                <button className="btn-cancelar-creacion" type="submit">Modificar Producto</button>
+                                <Link  to={`/productos/${id}`} className="btn-cancelar-creacion">Cancelar</Link>
+                                <button className="btn-crear-producto" type="submit">Modificar Producto</button>
                             </div>
             
                             {/* Render condicional de los errores del formulario */}

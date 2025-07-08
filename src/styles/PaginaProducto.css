@@ -15,6 +15,7 @@
 .contenedor-producto__imagen img{
     display: block;
     width: 100%;
+    max-width: 500px;
 }
 
 .contenedor-producto__info{

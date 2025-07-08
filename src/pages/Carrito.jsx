@@ -44,22 +44,44 @@ function Carrito(){
                 showDenyButton: true,
                 showCancelButton: false,
                 confirmButtonText: "Pagar",
-                denyButtonText: `Volver al carrito`
+                denyButtonText: `Volver al carrito`,
+                customClass:{
+                    title:"custom-swal-title",
+                    htmlContainer: "custom-swal-text",
+                    confirmButton: "custom-swal-confirm-btn",
+                }
         }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
-                    Swal.fire("Muchas gracias por tu compra !", "", "success");
-            //El carro se vacía acá
+                    Swal.fire({
+                        text:"Muchas gracias por tu compra !",
+                        icon: "success",
+                        customClass:{
+                            htmlContainer: "custom-swal-text",
+                            confirmButton: "custom-swal-confirm-btn",
+                        }
+                    });
+                    //El carro se vacía acá
                     vaciarCarrito()
                 } else if (result.isDenied) {
-                    Swal.fire("Volvés al carrito", "", "info");
-                }
-            });
+                    Swal.fire({
+                        text:"Volvés al carrito",
+                        icon: "info",
+                        customClass:{
+                            htmlContainer: "custom-swal-text",
+                            confirmButton: "custom-swal-confirm-btn",
+                        }
+                });
+            }});
         }else{
             Swal.fire({
                 title: "Tu carrito está vacío",
                 text: "Por qué no eliges algunos productos?",
-                icon: "info"
+                icon: "info",
+                customClass:{
+                    title:"custom-swal-title",
+                    htmlContainer: "custom-swal-text",
+                    confirmButton: "custom-swal-confirm-btn",
+                }
                 });
         }
         
@@ -68,28 +90,51 @@ function Carrito(){
     //Manejador del botón de vaciar carrito
     function handleVaciarCarrito(){
         if(contenidoCarrito.length >0){
-            //Preguntar con sweetAlert?
             Swal.fire({
                 icon: "question",
                 title: "Estas seguro que quieres vaciar el carrito?",
                 showDenyButton: true,
                 showCancelButton: false,
                 confirmButtonText: "Vaciar el carrito",
-                denyButtonText: `No vaciar el carrito`
+                denyButtonText: `No vaciar el carrito`,
+                customClass:{
+                    title:"custom-swal-title",
+                    htmlContainer: "custom-swal-text",
+                    confirmButton: "custom-swal-confirm-btn",
+                }
             }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire("Tu carrito ha sido vaciado", "", "success");
+                Swal.fire({
+                    title: "Tu carrito ha sido vaciado",
+                    icon: "success",
+                    customClass:{
+                        title:"custom-swal-title",
+                        confirmButton: "custom-swal-confirm-btn",
+                    }
+                });
                 //Acá se vacía el carrito
                 vaciarCarrito()
             } else if (result.isDenied) {
-                Swal.fire("Volvés al carrito", "", "info");
+                Swal.fire({
+                    title: "Volvés al carrito",
+                    icon: "info",
+                    customClass:{
+                        title:"custom-swal-title",
+                        confirmButton: "custom-swal-confirm-btn",
+                    }
+                });
             }
             });
         }else{
             Swal.fire({
                 title: "Carrito vacío",
                 text: "No puedes vaciar algo que ya está vacío ;)",
-                icon: "info"
+                icon: "info",
+                customClass:{
+                    title:"custom-swal-title",
+                    htmlContainer: "custom-swal-text",
+                    confirmButton: "custom-swal-confirm-btn",
+                }
             });
         }  
     }

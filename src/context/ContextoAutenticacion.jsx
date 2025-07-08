@@ -54,8 +54,17 @@ export function ProveedorContextoAutenticacion({children}){
         try {
             const respuestaCreacionUsuario = await createUserWithEmailAndPassword(auth, email, password)
             //EL ESTADO GLOBAL NO SE SETEA AQUÍ SINO EN EL USE EFFECT MEDIANTE onAuthStateChanged
-
-            Swal.fire({text:"Usuario creado correctamente 😊", icon: "success", confirmButtonColor:"#560BAD"})
+            Swal.fire({
+                title: "Bienvenido!",
+                text: "Usuario creado correctamente 😊",
+                icon: "success",
+                customClass: {
+                title: "custom-swal-title",
+                htmlContainer: "custom-swal-text",
+                confirmButton: "custom-swal-confirm-btn",
+                cancelButton: "custom-swal-cancel-btn"
+                }
+            });
     
             //EL ESTADO DE ADMINISTRADOR TAMPOCO SE SETEA AQUÍ POR EL MISMO MOTIVO
             return respuestaCreacionUsuario
@@ -65,14 +74,24 @@ export function ProveedorContextoAutenticacion({children}){
                 Swal.fire({
                     title:"Error en la creación del usuario",
                     text: "Ya hay una cuenta creada con ese mail",
-                    icon: "error"
+                    icon: "error",
+                    customClass: {
+                    title: "custom-swal-title",
+                    htmlContainer: "custom-swal-text",
+                    confirmButton: "custom-swal-confirm-btn",
+                    }
                 })
             }
             if(error.code == AuthErrorCodes.WEAK_PASSWORD){
                 Swal.fire({
                     title:"Error en la creación del usuario",
                     text: "La contraseña debe contener al menos 8 caracteres",
-                    icon: "error"
+                    icon: "error",
+                    customClass: {
+                    title: "custom-swal-title",
+                    htmlContainer: "custom-swal-text",
+                    confirmButton: "custom-swal-confirm-btn",
+                    }
                 })
             }
         }
@@ -88,23 +107,57 @@ export function ProveedorContextoAutenticacion({children}){
             // No es necesario setear usuarioActual aquí o comprobar si es admin aquí directamente
             // después de la respuesta, porque el listener de onAuthStateChanged se disparará
             // y actualizará el estado global de forma reactiva.
-            
+            Swal.fire({
+                title: "Bienvenido!",
+                text: "Sesión iniciada correctamente 😊",
+                icon: "success",
+                customClass: {
+                title: "custom-swal-title",
+                htmlContainer: "custom-swal-text",
+                confirmButton: "custom-swal-confirm-btn",
+                }
+            });
 
-            //SWEET ALERT 🦜🦜🦜🦜🦜 Y EL REDIRECT? 🦜🦜🦜❓❓❓
-            Swal.fire({text:"Sesión iniciada correctamente 😊", icon: "success", confirmButtonColor:"#560BAD"})
 
         } catch (error) {
-            Swal.fire({text:"Problemas con el inicio de sesión", icon: "error", confirmButtonColor:"#F72585"})
+            Swal.fire({
+                text: "Problemas con el inicio de sesión",
+                icon: "error",
+                customClass: {
+                htmlContainer: "custom-swal-text",
+                confirmButton: "custom-swal-confirm-btn",
+                }
+            });
             if (error.code == AuthErrorCodes.INVALID_EMAIL){
-                Swal.fire({text:"No hay un usuario con ese email registrado", icon: "error", confirmButtonColor:"#F72585"})
+                Swal.fire({
+                text: "No hay un usuario con ese email registrado",
+                icon: "error",
+                customClass: {
+                htmlContainer: "custom-swal-text",
+                confirmButton: "custom-swal-confirm-btn",
+                }
+            });
             }
             if(error.code == AuthErrorCodes.INVALID_PASSWORD){
-                Swal.fire({text:"Password incorrecto", icon: "error", confirmButtonColor:"#F72585"})
+                Swal.fire({
+                text: "Password incorrecto",
+                icon: "error",
+                customClass: {
+                htmlContainer: "custom-swal-text",
+                confirmButton: "custom-swal-confirm-btn",
+                }
+            });
             }
             //Los dos if anteriores no se disparan porque el error es auth/invalid-credential 🦜🦜🦜🦜🦜🦜🦜
             if(error.code == AuthErrorCodes.INVALID_LOGIN_CREDENTIALS){
-                Swal.fire({text:"El email o la contraseña son incorrectos", icon: "error", confirmButtonColor:"#F72585"})
-                
+                Swal.fire({
+                text: "El email o la contraseña son incorrectos",
+                icon: "error",
+                customClass: {
+                htmlContainer: "custom-swal-text",
+                confirmButton: "custom-swal-confirm-btn",
+                }
+            }); 
             }
         }
     }
@@ -116,9 +169,24 @@ export function ProveedorContextoAutenticacion({children}){
                 await signOut(auth);
                 // onAuthStateChanged se encargará de setear usuarioActual a null
                 // y usuarioEsAdmin a false.
-                Swal.fire({text:"Sesión cerrada correctamente 😊", icon: "success", confirmButtonColor:"#560BAD"})
+                Swal.fire({
+                    text: "Sesión cerrada correctamente 😊",
+                    icon: "success",
+                    customClass: {
+                    htmlContainer: "custom-swal-text",
+                    confirmButton: "custom-swal-confirm-btn",
+                    }
+            });
             } catch (error) {
-            Swal.fire({text:"Error al cerrar sesión", icon: "error", confirmButtonColor:"#F72585"})
+            Swal.fire({
+                text: "Error al cerrar sesión",
+                icon: "error",
+                customClass: {
+                htmlContainer: "custom-swal-text",
+                confirmButton: "custom-swal-confirm-btn",
+                }
+            });
+            
             }
     }
 

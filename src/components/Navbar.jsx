@@ -43,7 +43,12 @@ function Navbar(){
             text: "Estás seguro que quieres cerrar la sesión?",
             icon:"question",
             showCancelButton: true,
-            confirmButtonText: "Cerrar sesión"
+            confirmButtonText: "Cerrar sesión",
+            customClass: {
+                htmlContainer: "custom-swal-text",
+                confirmButton: "custom-swal-confirm-btn",
+                cancelButton: "custom-swal-cancel-btn"
+            }
         }).then((result)=>{
             if(result.isConfirmed){
                 cerrarSesion(auth);
