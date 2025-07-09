@@ -67,7 +67,15 @@
 
 .btn-admin-eliminar{
     background-color: #E83151;
-    color: var(--color-magnolia)
+    color: var(--color-magnolia);
+    border: 1px solid transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-admin-eliminar:hover{
+    background-color: var(--color-magnolia);
+    border: 1px solid #E83151;
+    color: #E83151;
 }
 
 .btn-admin-editar{

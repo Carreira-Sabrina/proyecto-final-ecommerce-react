@@ -1,5 +1,14 @@
-# Pre-entrega para Talento Tech React JS 2025
+# Proyecto final para Talento Tech React JS 2025
 
+> ## NOTA:
+> El sistema reconocerá como administradores a las cuentas creadas con los siguientes emails
+>
+> - <admin@admin.com>
+> - <optimus@admin.com>
+> - <holmes@admin.com>
+> - <ghost@admin.com>
+
+****
 
 ## Api utilizada
 
